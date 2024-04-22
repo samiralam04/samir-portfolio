@@ -19,7 +19,7 @@ function ProfComponent() {
           <h4>
           It's not at all important to get it right the first time. It's vitally important to get it right the last time.
           </h4>
-          <a href="https://drive.google.com/file/d/18r80uW__u6SklSczbV14jZChJO3yMXb2/view?usp=drivesdk"target="_blank">
+          <a href="https://drive.google.com/file/d/1LvxM72E1iotCyNgt0Iyed0s71cpjxmKL/view?usp=drivesdk"target="_blank">
           <button>See My Resume </button></a>
           <Social>
             <p>Check out my</p>
