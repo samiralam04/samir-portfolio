@@ -1,32 +1,37 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { FaLaptopCode } from "react-icons/fa";
+import { FaLaptopCode, FaBars, FaTimes } from "react-icons/fa";
 
 const Header = () => {
     const [bar, setBar] = useState(false);
-  return (
-    <Container bar={bar}>
-        <Logo>
-            <span className='green'><FaLaptopCode/></span>
-            <h1>Samir</h1>
-        </Logo>
-        <Nav bar={bar}>
-            <span><a href="#home">Home</a></span>
-            <span><a href="#service">Services</a></span>
-            <span><a href="#project">Projects</a></span>
-            <span><a href="#client">Testimonials</a></span>
-            <span><a href="#footer">Portfolio</a></span>
-        </Nav>
-        <div
-        onClick={() => setBar(!bar)}
-        className="bars">
-            <div className="bar"></div>
-        </div>
-    </Container>
-  )
+
+    const handleNavClick = () => {
+        if (window.innerWidth <= 640) {
+            setBar(false);
+        }
+    };
+
+    return (
+        <Container bar={bar}>
+            <Logo>
+                <span className='green'><FaLaptopCode/></span>
+                <h1>Samir</h1>
+            </Logo>
+            <Nav bar={bar}>
+                <span><a href="#home" onClick={handleNavClick}>Home</a></span>
+                <span><a href="#service" onClick={handleNavClick}>Services</a></span>
+                <span><a href="#project" onClick={handleNavClick}>Projects</a></span>
+                <span><a href="#client" onClick={handleNavClick}>Testimonials</a></span>
+                <span><a href="#footer" onClick={handleNavClick}>Portfolio</a></span>
+            </Nav>
+            <div onClick={() => setBar(!bar)} className="bars">
+                {bar ? <FaTimes /> : <FaBars />}
+            </div>
+        </Container>
+    );
 }
 
-export default Header
+export default Header;
 
 const Container = styled.div`
     display: flex;
@@ -43,44 +48,24 @@ const Container = styled.div`
     }
     .bars{
         display: none;
+        cursor: pointer;
     }
     @media(max-width:640px){
         .bars{
-            width: 40px;
-            height: 40px;
-            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0.5rem;
+            width: 40px;
+            height: 40px;
             z-index: 100;
-            .bar{
-                position: absolute;
-                width: 100%;
-                height: 2px;
-                background-color: ${props => props.bar ? "transparent" : "#fff"};
-                transition: all 400ms ease-in-out;
-                :before, :after{
-                    content: "";
-                    width: 100%;
-                    height: 2px;
-                    background-color: #fff;
-                    position: absolute;
-                }
-
-                :before{
-                    transform: ${props => props.bar ? "rotate(45deg)" : "translateY(10px)"};
-                    transition: all 400ms ease-in-out;
-                }
-
-                :after{
-                    transform: ${props => props.bar ? "rotate(-45deg)" : "translateY(-10px)"};
-                    transition: all 400ms ease-in-out;
-                }
+            svg {
+                font-size: 1.5rem;
+                color: ${props => props.bar ? "#fff" : "#000"};
             }
         }
     }
-`
+`;
+
 const Logo = styled.div`
     display: flex;
     align-items: center;
@@ -93,32 +78,48 @@ const Logo = styled.div`
         font-weight: 600;
         font-size: 1.2rem;
     }
-`
+`;
+
 const Nav = styled.div`
-    @media(max-width:640px){
-        position: fixed;
-        display: flex;
-        flex-direction: column;
-        background-color: #60ebe4;
-        inset: 0;
-        justify-content: center;
-        align-items: center;
-        font-size: 2rem;
-        gap: 2rem;
-        font-weight: 700;
-        height: ${props => props.bar ? "100vh" : 0};
-        transition: height 400ms ease-in-out;
-        overflow: hidden;
-        z-index: 100;
+    position: fixed;
+    right: ${props => props.bar ? "0" : "-100%"}; /* Adjusted positioning */
+    top: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.17);
+    width: ${props => props.bar ? "50%" : 0}; /* Adjusted width */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+    gap: 2rem;
+    font-weight: 700;
+    transition: right 400ms ease-in-out, width 400ms ease-in-out; /* Added width transition */
+    z-index: 99;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px); /* Apply glass effect */
+
+    @media(min-width: 641px) {
+        position: absolute;
+        right: 0;
+        width: auto;
+        background-color: transparent;
+        flex-direction: row;
+        gap: 1rem;
+        top: auto;
+        bottom: auto;
+        box-shadow: none;
     }
-    span{
+
+    span {
         margin-left: 1rem;
-        a{
+        a {
             color: #fff;
             text-decoration: none;
             font-weight: 400;
             position: relative;
-            :before{
+
+            :before {
                 content: "";
                 position: absolute;
                 left: 0;
@@ -130,15 +131,16 @@ const Nav = styled.div`
                 transform-origin: right;
                 transition: transform 400ms ease-in-out;
             }
-            :hover:before{
+
+            :hover:before {
                 transform: scale(1);
                 transform-origin: left;
-                color:#60ebe4;
+                color: #60ebe4;
             }
-            :hover{
-                
-                color:#60ebe4;
+
+            :hover {
+                color: #60ebe4;
             }
         }
     }
-`
+`;
