@@ -86,7 +86,7 @@ const Nav = styled.div`
     top: 0;
     bottom: 0;
     background-color: rgba(255, 255, 255, 0.17);
-    width: ${props => props.bar ? "50%" : 0}; /* Adjusted width */
+    width: ${props => props.bar ? "50%" : 0}; 
     display: flex;
     flex-direction: column;
     justify-content: center;
