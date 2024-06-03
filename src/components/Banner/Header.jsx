@@ -97,8 +97,7 @@ const Nav = styled.div`
     transition: right 400ms ease-in-out, width 400ms ease-in-out; /* Added width transition */
     z-index: 99;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(10px); /* Apply glass effect */
-
+    backdrop-filter: blur(10px); 
     @media(min-width: 641px) {
         position: absolute;
         right: 0;
