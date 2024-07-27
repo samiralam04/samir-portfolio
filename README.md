@@ -17,7 +17,7 @@ https://samiralam04.github.io/samir-portfolio/
 
 This portfolio is build using React JS, Styled-Components and react awesome reveal library. People can see the owners services, projects, clients ideas and also has a contact form for people to get in touch with. 
 
-Developed By Samir Alam 2024.
+Developed By Samir Alam .
 
 
 ## Technologies 
