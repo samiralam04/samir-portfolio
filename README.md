@@ -1,8 +1,8 @@
 
 ## Portfolio using React js and styled-components 2023
 
-
 <img src="portfolioBanner.png" alt="banner"/>
+
 
 
 ## Demo
