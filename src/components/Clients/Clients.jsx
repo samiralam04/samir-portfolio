@@ -7,7 +7,7 @@ import { Slide } from 'react-awesome-reveal';
 
 let clients = [
     {
-        name : "Ayus Nair",
+        name : "Ayush",
         position : "UX/UI Designer",
         img_url : "https://i.pinimg.com/564x/38/aa/95/38aa95f88d5f0fc3fc0f691abfaeaf0c.jpg",
         stars : 3,
