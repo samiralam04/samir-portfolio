@@ -1,7 +1,7 @@
 
 ## Portfolio using React js and styled-components 2023
 
-<img src="https://res.cloudinary.com/ghazni/image/upload/v1678467366/portfolio_6_tg19nz.png" alt="banner"/>
+<img src="portfolio banner.png" alt="banner"/>
 
 ## Demo
 https://samiralam04.github.io/samir-portfolio/
