@@ -19,8 +19,8 @@ function ProfComponent() {
           <h4>
           It's not at all important to get it right the first time. It's vitally important to get it right the last time.
           </h4>
-          <a href="https://drive.google.com/file/d/1LvxM72E1iotCyNgt0Iyed0s71cpjxmKL/view?usp=drivesdk"target="_blank">
-          <button>See My Resume </button></a>
+          <a href="https://drive.google.com/file/d/12B9lrrh2OsN8aglW8kgKto_uzNuzW0bA/view?usp=drive_link"target="_blank">
+          <button>Check My Resume </button></a>
           <Social>
             <p>Check out my</p>
             <div className="social-icons">
