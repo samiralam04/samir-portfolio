@@ -31,6 +31,12 @@ let data = [
 
     href: " https://samiralam04.github.io/The-Fitness-Club/",
   },
+  {
+    img: "https://mir-s3-cdn-cf.behance.net/projects/404/8eec89176281219.Y3JvcCw4MDgsNjMyLDAsMA.png",
+    disc: " Tiny URL Shortener, A Java servlet-based application that shortens long URLs. It includes user registration, login, and session management, with all data stored securely in a PostgreSQL database.",
+
+    href: "https://github.com/samiralam04/TinyUrl",
+  },
 ];
 
 var settings = {
