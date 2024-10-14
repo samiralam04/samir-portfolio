@@ -34,6 +34,9 @@ const Footer = () => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
+
+    
+
     const formData = new FormData(event.target);
     formData.append("access_key", "b6d9769d-1513-4e40-a643-dd0af0e60c51");
 
