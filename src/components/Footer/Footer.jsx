@@ -133,7 +133,7 @@ const Footer = () => {
             </Zoom>
             <Zoom>
               <span>
-                <a href="/">
+                <a href="#">
                   <BsSlack />
                 </a>
               </span>
