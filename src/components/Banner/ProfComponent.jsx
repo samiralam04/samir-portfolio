@@ -4,7 +4,7 @@ import {  AiOutlineInstagram } from "react-icons/ai";
 import { GiEarthAmerica,  } from "react-icons/gi";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 import { Slide } from "react-awesome-reveal";
-import profilePic from './dp.jpg';
+import profilePic from './dp.png';
 
 function ProfComponent() {
   return (

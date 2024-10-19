@@ -91,7 +91,7 @@ const Footer = () => {
               <FiPhoneCall />
             </span>
             <Slide direction="left">
-              <a href="tel:+917766816713">+917766816713</a>
+              <a href="tel:+917604986674">+917604986674</a>
             </Slide>
           </div>
           <div>
@@ -101,7 +101,7 @@ const Footer = () => {
               </span>
             </Slide>
             <Slide>
-              <a href="mailto:miladamiri@gmail.com">samiralam7005@gmail.com</a>
+              <a href="mailto:samiralam7005@gmail.com">samiralam7005@gmail.com</a>
             </Slide>
           </div>
         </div>
@@ -112,7 +112,7 @@ const Footer = () => {
           <div className="icons">
             <Zoom>
               <span>
-                <a href="https://github.com/samiralam04?tab=repositories"target="_blank">
+                <a href="https://github.com/samiralam04"target="_blank">
                   <AiFillGithub />
                 </a>
               </span>
