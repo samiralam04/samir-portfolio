@@ -1,7 +1,7 @@
 
 ## Portfolio using React js and styled-components 2024
 
-<img src="portfolioBanner.png" alt="banner"/>
+<img src="Banner.png" alt="banner"/>
 
 
 
