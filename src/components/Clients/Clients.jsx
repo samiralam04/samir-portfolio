@@ -22,14 +22,14 @@ let clients = [
     },
     {
         name : "Dharshan Shrinivash",
-        position : "web developer",
+        position : "Python developer",
         img_url : "https://i.pinimg.com/564x/38/aa/95/38aa95f88d5f0fc3fc0f691abfaeaf0c.jpg",
         stars : 5,
         disc : `Outstanding web design skills! Your websites are not just visually stunning but also intuitive, providing our users with an unforgettable online experience.`
     },
     {
         name : "Akash",
-        position : "web developer",
+        position : "HTML developer",
         img_url : "https://i.pinimg.com/564x/38/aa/95/38aa95f88d5f0fc3fc0f691abfaeaf0c.jpg",
         stars : 5,
         disc : `Impeccable creativity and professionalism! Working with you on our projects has been a breeze, and your dedication to delivering high-quality results truly sets you apart.`

@@ -7,10 +7,11 @@ const Projects = () => {
   return (
     <Container id='project'>
         <Zoom>
-            <h1>Recent <span className="green">Projects</span></h1>
-            <p>Designed and developed a dynamic gym landing page, showcasing facilities and services, with HTML, CSS, JS and Bootstrap.<br></br>
+            <h1>Explore <span className="green">My Latest Creations</span></h1>
+            
+            <p>Here, you'll find a showcase of my latest and most exciting work, where creativity meets technology. Each project reflects my passion for coding and learning.<br></br>
 
-Created a responsive To-Do List application using HTML, CSS, and JavaScript for streamlined task organization.</p>
+<br></br>Explore what I’ve been building recently and see how I bring ideas to life with code.</p>
         </Zoom>
         <Slide>
             <SliderComp/>
