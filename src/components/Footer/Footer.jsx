@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { MdAlternateEmail } from "react-icons/md";
-import {  CgProfile } from "react-icons/cg";
+import { CgProfile } from "react-icons/cg";
 import { HiOutlineMailOpen } from "react-icons/hi";
-import { AiFillGithub,  AiFillLinkedin, AiOutlineArrowUp } from "react-icons/ai";
-import {   BsSlack } from "react-icons/bs";
+import { AiFillGithub, AiFillLinkedin, AiOutlineArrowUp } from "react-icons/ai";
+import { BsSlack } from "react-icons/bs";
 import { FiMessageSquare, FiPhoneCall } from "react-icons/fi";
 import { Slide, Zoom, Fade } from "react-awesome-reveal";
-import { FaInstagram  } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
   const [formData, setFormData] = useState({
@@ -35,13 +35,13 @@ const Footer = () => {
   const onSubmit = async (event) => {
     event.preventDefault();
 
-    
+    const apiKey = process.env.REACT_APP_API_KEY;
 
     const formData = new FormData(event.target);
-    formData.append("access_key", "b6d9769d-1513-4e40-a643-dd0af0e60c51");
+    formData.append("access_key", apiKey);
 
     // Customize subject line with user's name
-    const subject = `${formData.get('name')} sent you a message from your  portfolio!`;
+    const subject = `${formData.get('name')} sent you a message from your portfolio!`;
     formData.append("subject", subject);
 
     const object = Object.fromEntries(formData);
@@ -67,7 +67,6 @@ const Footer = () => {
       setShowPopup(true); // Show popup after form submission
     }
   };
-
   return (
     <Container id="footer">
       <Profile>
