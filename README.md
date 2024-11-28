@@ -14,6 +14,7 @@ https://samiralam04.github.io/samir-portfolio/
 - Slider
 - Animation on scroll
 - Responsive
+- serverless form submition 
 
 ## Description
 
@@ -24,6 +25,8 @@ Developed By Samir Alam .
 
 ## Technologies 
 
+- [HTML](https://reactjs.org/docs/getting-started.html)
+- [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
 - [React JS](https://reactjs.org/docs/getting-started.html)
 - [Styled-Components](https://styled-components.com)
 - [React Slick](https://react-slick.neostack.com)
