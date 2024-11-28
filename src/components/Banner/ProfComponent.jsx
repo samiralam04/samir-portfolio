@@ -31,6 +31,7 @@ function ProfComponent() {
               </span>
               <span>
                 <a href="https://samiralam04.github.io/samir-portfolio/">
+                
                   <GiEarthAmerica />
                 </a>
               </span>
