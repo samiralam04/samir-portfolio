@@ -30,7 +30,7 @@ function ProfComponent() {
                 </a>
               </span>
               <span>
-                <a href="/">
+                <a href="https://samiralam04.github.io/samir-portfolio/">
                   <GiEarthAmerica />
                 </a>
               </span>
