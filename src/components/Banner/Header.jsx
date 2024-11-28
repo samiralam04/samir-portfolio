@@ -85,8 +85,8 @@ const Nav = styled.div`
     right: ${props => props.bar ? "0" : "-100%"}; /* Adjusted positioning */
     top: 0;
     bottom: 0;
-    background-color: rgba(255, 255, 255, 0.17);
-    width: ${props => props.bar ? "50%" : 0}; 
+    background-color: var(---background);
+    width: ${props => props.bar ? "45%" : 0}; 
     display: flex;
     flex-direction: column;
     justify-content: center;

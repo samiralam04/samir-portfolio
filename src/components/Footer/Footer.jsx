@@ -68,6 +68,7 @@ const Footer = () => {
     }
   };
   return (
+    <>
     <Container id="footer">
       <Profile>
         <Slide direction="left" delay={1}>
@@ -196,10 +197,23 @@ const Footer = () => {
         </Popup>
       )}
     </Container>
+
+<Copyright>
+<p>© 2024 Samir Alam. All Rights Reserved.</p>
+</Copyright>
+</>
   );
 };
 
 export default Footer;
+
+const Copyright = styled.div`
+  background-color:var(---background); 
+  color: #fff;
+  text-align: center; 
+  padding: 1rem 0; 
+  font-size: 0.9rem; 
+`;
 
 const Container = styled.div`
   margin-top: 2rem;
