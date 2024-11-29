@@ -8,6 +8,7 @@ import { BsSlack } from "react-icons/bs";
 import { FiMessageSquare, FiPhoneCall } from "react-icons/fi";
 import { Slide, Zoom, Fade } from "react-awesome-reveal";
 import { FaInstagram } from "react-icons/fa";
+import dp from './dp.png';
 
 const Footer = () => {
   const [formData, setFormData] = useState({
@@ -198,9 +199,17 @@ const Footer = () => {
       )}
     </Container>
 
-<Copyright>
-<p>© 2024 Samir Alam. All Rights Reserved.</p>
+    <Copyright>
+  <p style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "10px" }}>
+    <img 
+      src={dp} 
+      alt="Logo" 
+      style={{ width: "20px", height: "20px", borderRadius: "50%" }} 
+    />
+    © 2024 Samir Alam. All Rights Reserved.
+  </p>
 </Copyright>
+
 </>
   );
 };

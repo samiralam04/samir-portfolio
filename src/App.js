@@ -5,9 +5,11 @@ import Clients from "./components/Clients/Clients";
 import Footer from "./components/Footer/Footer";
 import Projects from "./components/Projects/Projects";
 import Services from "./components/Service/Services";
+
 function App() {
   return (
     <Container>
+
       <Banner>
         <Header />
         <ProfComponent />
@@ -20,6 +22,7 @@ function App() {
       <LightColor>
         <Footer />
       </LightColor>
+      
     </Container>
   );
 }
