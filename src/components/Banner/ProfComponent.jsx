@@ -41,7 +41,7 @@ function ProfComponent() {
                 </a>
               </span>
               <span>
-                <a href="https://github.com/samiralam04?tab=repositories"target="_blank">
+                <a href="https://github.com/samiralam04"target="_blank">
                   <FaGithub /> 
                 </a>
               </span>

@@ -22,7 +22,7 @@ function App() {
       <LightColor>
         <Footer />
       </LightColor>
-      
+
     </Container>
   );
 }
