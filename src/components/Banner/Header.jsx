@@ -11,6 +11,7 @@ const Header = () => {
         }
     };
 
+    
     return (
         <Container bar={bar}>
             <Logo>
