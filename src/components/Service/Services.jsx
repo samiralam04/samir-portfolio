@@ -6,6 +6,7 @@ import styled from "styled-components";
 import Card from "./Card";
 import { Slide } from "react-awesome-reveal";
 
+
 const Services = () => {
   return (
     <Container id="service">
