@@ -15,9 +15,9 @@ function ProfComponent() {
             Hello <span className="green">I'am</span>
           </h4>
           <h1 className="green">Samir Alam</h1>
-          <h3>UX/UI Designer, graphic designer and  Web Developer.</h3>
+          <h3>Aspiring Full Stack Developer.</h3>
           <h4>
-          It's not at all important to get it right the first time. It's vitally important to get it right the last time.
+          Great things aren't built in a day—they're refined through effort and dedication.
           </h4>
           <a href="https://drive.google.com/file/d/1stEh8kycPgGbF8ZuEDnY5AE9vmvibYjb/view?usp=drive_link"target="_blank">
           <button>Check My Resume </button></a>

@@ -1,7 +1,7 @@
 import React from "react";
-import { MdDesignServices } from "react-icons/md";
-import { FiCodesandbox } from "react-icons/fi";
-import { CgWebsite } from "react-icons/cg";
+import { MdDevices } from "react-icons/md";
+import {  MdSettings } from "react-icons/md";
+import { MdBugReport } from "react-icons/md";
 import styled from "styled-components";
 import Card from "./Card";
 import { Slide } from "react-awesome-reveal";
@@ -18,23 +18,23 @@ const Services = () => {
       <Cards>
         <Slide direction="left">
           <Card
-            Icon={MdDesignServices}
-            title={"ui/ux designer"}
-            disc={`Crafting seamless digital experiences that captivate users and elevate brands through intuitive interfaces and thoughtful design strategies.`}
+            Icon={MdDevices}
+            title={"Frontend Development"}
+            disc={`Designing responsive and user-friendly interfaces using modern tools like HTML, CSS, JavaScript, and frameworks like React to enhance user experiences.`}
           />
         </Slide>
         <Slide direction="up">
           <Card
-            Icon={FiCodesandbox}
-            title={"graphic designer"}
-            disc={`Transforming concepts into compelling visuals, my designs breathe life into brands, conveying messages with creativity and impact.`}
+            Icon={ MdSettings}
+            title={"Backend Development"}
+            disc={`Creating secure and efficient server-side applications with Java Servlets and PostgreSQL for seamless data handling and application logic.`}
           />
         </Slide>
         <Slide direction="right">
           <Card
-            Icon={CgWebsite}
-            title={"web designer"}
-            disc={`Bringing visions to life on the digital canvas, I meticulously design websites that blend functionality with aesthetics for an unforgettable online presence.`}
+            Icon={MdBugReport}
+            title={"Debugging and Optimization"}
+            disc={`Identifying and resolving bugs, improving code performance, and optimizing applications to ensure smooth and error-free functionality.`}
           />
         </Slide>
       </Cards>
