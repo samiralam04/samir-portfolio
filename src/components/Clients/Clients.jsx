@@ -11,7 +11,7 @@ let clients = [
         position : "UX/UI Designer",
         img_url : "https://i.pinimg.com/564x/38/aa/95/38aa95f88d5f0fc3fc0f691abfaeaf0c.jpg",
         stars : 3,
-        disc : `Exceptional attention to detail! Your UX/UI designs transformed our platform, enhancing user engagement and driving conversions.`
+        disc : `Your frontend expertise and attention to detail transformed our platform, enhancing UI/UX and boosting user engagement. Exceptional work!.`
     },
     {
         name : "Neeraj",
