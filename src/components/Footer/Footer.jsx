@@ -16,7 +16,7 @@ const Footer = () => {
     email: '',
     message: ''
   });
-  const [showPopup, setShowPopup] = useState(false); // State for popup visibility
+  const [showPopup, setShowPopup] = useState(false); 
 
   const scrollUp = () => {
     window.scroll({
