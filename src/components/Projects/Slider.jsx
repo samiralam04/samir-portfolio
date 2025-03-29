@@ -6,9 +6,10 @@ import styled from "styled-components";
 
 let data = [
   {
-    img: "https://www.logoai.com/uploads/output/2022/10/17/9135d68826af2d0802c03554d508446e.jpg",
-    disc: " A React.js and Firebase-based chat app with real-time messaging, user photo uploads, and blocking features. Designed for desktop use, it enhances security with .env-managed API keys and offers a streamlined user experience. ",
-    href: "https://samiralam04.github.io/Real-Time-chatApp/",
+    img: "https://img.freepik.com/free-vector/confirmed-attendance-concept-illustration_114360-7745.jpg?t=st=1743274092~exp=1743277692~hmac=1bca00d61734dbdf22f5b044eb8385231a66c9b5a0e64530941ae367e7f18907&w=1380",
+    disc: "Student Attendance Management System using Java, Servlets, and PostgreSQL to streamline attendance tracking with automated notifications and role-based access.",
+
+    href: "https://github.com/samiralam04/RollWise",
   },
   {
     img: "https://img.freepik.com/premium-vector/lettering-modern-hand-written-text-sticker-planner-bright-text-planning-concept-vector-illustration_565728-492.jpg",
@@ -36,6 +37,11 @@ let data = [
     disc: " Tiny URL Shortener, A Java servlet-based application that shortens long URLs. It includes user registration, login, and session management, with all data stored securely in a PostgreSQL database.",
 
     href: "https://github.com/samiralam04/TinyUrl",
+  },
+  {
+    img: "https://www.logoai.com/uploads/output/2022/10/17/9135d68826af2d0802c03554d508446e.jpg",
+    disc: " A React.js and Firebase-based chat app with real-time messaging, user photo uploads, and blocking features. Designed for desktop use, it enhances security with .env-managed API keys and offers a streamlined user experience. ",
+    href: "https://samiralam04.github.io/Real-Time-chatApp/",
   },
 ];
 
