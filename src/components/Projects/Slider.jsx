@@ -5,12 +5,7 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import styled from "styled-components";
 
 let data = [
-  {
-    img: "https://img.freepik.com/free-vector/confirmed-attendance-concept-illustration_114360-7745.jpg?t=st=1743274092~exp=1743277692~hmac=1bca00d61734dbdf22f5b044eb8385231a66c9b5a0e64530941ae367e7f18907&w=1380",
-    disc: "Student Attendance Management System using Java, Servlets, and PostgreSQL to streamline attendance tracking with automated notifications and role-based access.",
-
-    href: "https://github.com/samiralam04/RollWise",
-  },
+ 
   {
     img: "https://img.freepik.com/premium-vector/lettering-modern-hand-written-text-sticker-planner-bright-text-planning-concept-vector-illustration_565728-492.jpg",
     disc: "A minimalist To-Do List built with HTML, CSS, and JavaScript, facilitating efficient task management with intuitive design and dynamic functionality.",
