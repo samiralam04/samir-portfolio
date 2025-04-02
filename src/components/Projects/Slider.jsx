@@ -106,6 +106,7 @@ const SliderComp = () => {
   );
 };
 
+
 export default SliderComp;
 
 const Container = styled.div`
