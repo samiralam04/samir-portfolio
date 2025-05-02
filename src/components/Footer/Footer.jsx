@@ -11,12 +11,15 @@ import { FaInstagram } from "react-icons/fa";
 import dp from './dp.png';
 
 const Footer = () => {
+  // Form data state
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: ''
   });
-  const [showPopup, setShowPopup] = useState(false); 
+
+  const [showPopup, setShowPopup] = useState(false); // Success message
+  const [loading, setLoading] = useState(false);     // Loading state
 
   const scrollUp = () => {
     window.scroll({
@@ -37,16 +40,13 @@ const Footer = () => {
     event.preventDefault();
 
     const apiKey = process.env.REACT_APP_API_KEY;
+    const formDataObj = new FormData(event.target);
+    formDataObj.append("access_key", apiKey);
+    formDataObj.append("subject", `${formDataObj.get('name')} sent you a message from your portfolio!`);
+    const json = JSON.stringify(Object.fromEntries(formDataObj));
 
-    const formData = new FormData(event.target);
-    formData.append("access_key", apiKey);
-
-    // Customize subject line with user's name
-    const subject = `${formData.get('name')} sent you a message from your portfolio!`;
-    formData.append("subject", subject);
-
-    const object = Object.fromEntries(formData);
-    const json = JSON.stringify(object);
+    // Show loading popup
+    setLoading(true);
 
     const res = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
@@ -57,160 +57,120 @@ const Footer = () => {
       body: json
     }).then((res) => res.json());
 
+    setLoading(false); // Hide loading popup
+
     if (res.success) {
       console.log("Success", res);
-      
+
       setFormData({
         name: '',
         email: '',
         message: ''
       });
-      setShowPopup(true); // Show popup after form submission
+      setShowPopup(true); // Show thank you popup
     }
   };
+
   return (
     <>
-    <Container id="footer">
-      <Profile>
-        <Slide direction="left" delay={1}>
-          <h1>Portfolio</h1>
+      <Container id="footer">
+        {/* Left Profile Section */}
+        <Profile>
+          <Slide direction="left" delay={1}>
+            <h1>Portfolio</h1>
+          </Slide>
+          <div className="address">
+            <Slide direction="left"><h1>Education:</h1></Slide>
+            <Slide direction="left"><p>Bachelor of Computer Applications (BCA)</p></Slide>
+          </div>
+          <div className="links">
+            <Slide direction="left"><h1>Contact me directly:</h1></Slide>
+            <div>
+              <span><FiPhoneCall /></span>
+              <Slide direction="left"><a href="tel:+917604986674">+917604986674</a></Slide>
+            </div>
+            <div>
+              <Slide direction="left"><span><HiOutlineMailOpen /></span></Slide>
+              <Slide><a href="mailto:samiralam7005@gmail.com">samiralam7005@gmail.com</a></Slide>
+            </div>
+          </div>
+          <div className="profiles">
+            <Slide direction="left"><h1>Check my profiles</h1></Slide>
+            <div className="icons">
+              <Zoom><span><a href="https://github.com/samiralam04" target="_blank"><AiFillGithub /></a></span></Zoom>
+              <Zoom><span><a href="https://www.linkedin.com/in/samir-alam-3756582b6?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><AiFillLinkedin /></a></span></Zoom>
+              <Zoom><span><a href="https://www.instagram.com/samir.__.04" target="_blank"><FaInstagram /></a></span></Zoom>
+              <Zoom><span><a href="#"><BsSlack /></a></span></Zoom>
+            </div>
+          </div>
+          <Fade>
+            <ArrowUp onClick={scrollUp}><AiOutlineArrowUp /></ArrowUp>
+          </Fade>
+        </Profile>
+
+        {/* Contact Form Section */}
+        <Slide direction="right">
+          <FormContainer onSubmit={onSubmit}>
+            <div className="name">
+              <span><CgProfile /></span>
+              <input
+                type="text" placeholder="Enter Your Name" required
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="email">
+              <span><MdAlternateEmail /></span>
+              <input
+                type="email" placeholder="example@domain.com" required
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="message">
+              <span className="messageIcon"><FiMessageSquare /></span>
+              <textarea
+                name="message" placeholder="Your message..." style={{ paddingTop: '40px' }} required
+                value={formData.message}
+                onChange={handleChange}
+              />
+            </div>
+            <button type="submit">Submit Form</button>
+          </FormContainer>
         </Slide>
-        <div className="address">
-          <Slide direction="left">
-            <h1>Education:</h1>
-          </Slide>
-          <Slide direction="left">
-            <p>Bachelor of Computer Applications (BCA)</p>
-          </Slide>
-        </div>
-        <div className="links">
-          <Slide direction="left">
-            <h1>Contact me directly:</h1>
-          </Slide>
-          <div>
-            <span>
-              <FiPhoneCall />
-            </span>
-            <Slide direction="left">
-              <a href="tel:+917604986674">+917604986674</a>
-            </Slide>
-          </div>
-          <div>
-            <Slide direction="left">
-              <span>
-                <HiOutlineMailOpen />
-              </span>
-            </Slide>
-            <Slide>
-              <a href="mailto:samiralam7005@gmail.com">samiralam7005@gmail.com</a>
-            </Slide>
-          </div>
-        </div>
-        <div className="profiles">
-          <Slide direction="left">
-            <h1>Check my profiles</h1>
-          </Slide>
-          <div className="icons">
-            <Zoom>
-              <span>
-                <a href="https://github.com/samiralam04"target="_blank">
-                  <AiFillGithub />
-                </a>
-              </span>
-            </Zoom>
-            <Zoom>
-              <span>
-                <a href="https://www.linkedin.com/in/samir-alam-3756582b6?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"target="_blank">
-                  <AiFillLinkedin />
-                </a>
-              </span>
-            </Zoom>
-            <Zoom>
-              <span>
-                <a href="https://www.instagram.com/samir.__.04"target="_blank">
-                  <FaInstagram/>
-                </a>
-              </span>
-            </Zoom>
-            <Zoom>
-              <span>
-                <a href="#">
-                  <BsSlack />
-                </a>
-              </span>
-            </Zoom>
-          </div>
-        </div>
-        <Fade>
-          <ArrowUp onClick={scrollUp}>
-            <AiOutlineArrowUp />
-          </ArrowUp>
-        </Fade>
-      </Profile>
-      
-      <Slide direction="right">
-        <FormContainer onSubmit={onSubmit}>
-          <div className="name">
-            <span>
-              <CgProfile />
-            </span>
-            
-            <input
-              type="text"placeholder="Enter Your Name" required
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="email">
-            <span>
-              <MdAlternateEmail />
-            </span>
-           
-            <input
-              type="email"placeholder="example@domain.com" required
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="message">
-            <span className="messageIcon">
-              <FiMessageSquare />
-            </span>
 
-            <textarea
-              name="message" placeholder="Your message..."style={{paddingTop:'40px'}} required
-              value={formData.message}
-              onChange={handleChange}
-            />
-          </div>
-          <button type="submit">Submit Form</button>
-        </FormContainer>
-      </Slide>
-      {showPopup && (
-        <Popup>
-          <PopupContent>
-            <h2>Thank you!</h2>
-            <p>Your form has been submitted successfully.</p>
-            <button onClick={() => setShowPopup(false)}>Close</button>
-          </PopupContent>
-        </Popup>
-      )}
-    </Container>
+        {/* Loading Popup */}
+        {loading && (
+          <Popup>
+            <PopupContent>
+              <h2>Sending...</h2>
+              <p>Please wait while your message is being sent.</p>
+            </PopupContent>
+          </Popup>
+        )}
 
-    <Copyright>
-  <p style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "10px" }}>
-    <img 
-      src={dp} 
-      alt="Logo" 
-      style={{ width: "20px", height: "20px", borderRadius: "50%" }} 
-    />
-    © 2024 Samir Alam. All Rights Reserved.
-  </p>
-</Copyright>
+        {/* Success Message Popup */}
+        {showPopup && (
+          <Popup>
+            <PopupContent>
+              <h2>Thank you!</h2>
+              <p>Your form has been submitted successfully.</p>
+              <button onClick={() => setShowPopup(false)}>Close</button>
+            </PopupContent>
+          </Popup>
+        )}
+      </Container>
 
-</>
+      {/* Copyright */}
+      <Copyright>
+        <p style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "10px" }}>
+          <img src={dp} alt="Logo" style={{ width: "20px", height: "20px", borderRadius: "50%" }} />
+          © 2024 Samir Alam. All Rights Reserved.
+        </p>
+      </Copyright>
+    </>
   );
 };
 
