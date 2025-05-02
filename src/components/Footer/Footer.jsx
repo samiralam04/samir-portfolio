@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { MdAlternateEmail } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
 import { HiOutlineMailOpen } from "react-icons/hi";
@@ -9,6 +9,24 @@ import { FiMessageSquare, FiPhoneCall } from "react-icons/fi";
 import { Slide, Zoom, Fade } from "react-awesome-reveal";
 import { FaInstagram } from "react-icons/fa";
 import dp from './dp.png';
+
+// Loading Spinner Component
+const spin = keyframes`
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+const LoadingSpinner = styled.div`
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(96, 235, 228, 0.3);
+  border-radius: 50%;
+  border-top-color: #60ebe4;
+  animation: ${spin} 1s ease-in-out infinite;
+  margin-bottom: 1rem;
+`;
 
 const Footer = () => {
   // Form data state
@@ -145,6 +163,7 @@ const Footer = () => {
         {loading && (
           <Popup>
             <PopupContent>
+              <LoadingSpinner />
               <h2>Sending...</h2>
               <p>Please wait while your message is being sent.</p>
             </PopupContent>
@@ -237,6 +256,7 @@ const Profile = styled.div`
         }
       }
     }
+  }
   }
 
   .profiles {
@@ -372,16 +392,25 @@ const Popup = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1000;
 `;
 
 const PopupContent = styled.div`
   background-color: #494D5F;
-  padding: 2rem;
+  padding: 3rem;
   border-radius: 5px;
   text-align: center;
+  max-width: 300px;
+  width: 90%;
 
   h2 {
     margin-bottom: 1rem;
+    color: #60ebe4;
+  }
+
+  p {
+    margin-bottom: 1.5rem;
+    color: #fff;
   }
 
   button {
@@ -398,5 +427,3 @@ const PopupContent = styled.div`
     }
   }
 `;
-
-
