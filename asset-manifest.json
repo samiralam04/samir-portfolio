@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/samir-portfolio/static/css/main.8189922c.css",
-    "main.js": "/samir-portfolio/static/js/main.fe1a0037.js",
+    "main.js": "/samir-portfolio/static/js/main.3364dc1f.js",
     "static/media/dp.png": "/samir-portfolio/static/media/dp.a0674ca4c961f56c32a6.png",
     "index.html": "/samir-portfolio/index.html",
     "main.8189922c.css.map": "/samir-portfolio/static/css/main.8189922c.css.map",
-    "main.fe1a0037.js.map": "/samir-portfolio/static/js/main.fe1a0037.js.map"
+    "main.3364dc1f.js.map": "/samir-portfolio/static/js/main.3364dc1f.js.map"
   },
   "entrypoints": [
     "static/css/main.8189922c.css",
-    "static/js/main.fe1a0037.js"
+    "static/js/main.3364dc1f.js"
   ]
 }
