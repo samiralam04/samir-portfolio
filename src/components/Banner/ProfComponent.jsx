@@ -70,72 +70,102 @@ const Container = styled.div`
   max-width: 1280px;
   margin: 0 auto;
   z-index: 1;
-  @media (max-width: 840px) {
-    width: 90%;
+  align-items: center; /* Ensure vertical alignment */
+  
+  @media (max-width: 1024px) { /* Better breakpoint for laptops */
+    flex-direction: row;
+    gap: 1.5rem;
+    padding-top: 2rem;
   }
 
-  @media (max-width: 640px) {
-    flex-direction: column;
+  @media (max-width: 768px) { /* Tablet sizes */
+    width: 85%;
+    flex-direction: column-reverse; /* Better flow on mobile */
+    align-items: flex-start;
+    gap: 1rem;
+    padding-top: 1.5rem;
+  }
+
+  @media (max-width: 480px) { /* Mobile sizes */
+    width: 90%;
+    padding-top: 1rem;
   }
 `;
+
 const Texts = styled.div`
   flex: 1;
-   h4 {
-  padding-top:60px;
-   padding: 1rem 0;
-   font-weight: 500;
-   }
-  h1 {
-    padding-top:30px;
-    font-size: 2rem;
-    font-family: "Secular One", sans-serif;
-    letter-spacing: 2px;
-   
-  }
-  h3 {
-    padding-top:20px;
+  
+  h4 {
+    padding: 0.5rem 0;
     font-weight: 500;
-    font-size: 1.2rem;
-    padding-bottom: 1.2rem;
+    margin-top: 1.5rem;
+    font-size: clamp(0.9rem, 2vw, 1.1rem); /* Fluid typography */
+  }
+  
+  h1 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem); /* Responsive font size */
+    font-family: "Secular One", sans-serif;
+    letter-spacing: 1.5px;
+    line-height: 1.2;
+    margin: 0.5rem 0;
+  }
+  
+  h3 {
+    font-weight: 500;
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    padding: 0.5rem 0;
     text-transform: capitalize;
   }
+  
   p {
-    padding-top:70px;
     font-weight: 300;
+    font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+    line-height: 1.6;
+    margin: 1rem 0;
   }
 
   button {
-   
     padding: 0.7rem 2rem;
-    margin-top: 4rem;
+    margin: 2rem 0;
     cursor: pointer;
     background-color: #60ebe4;
     border: none;
     color: #fff;
     font-weight: 500;
+    font-size: 1rem;
+    border-radius: 4px; /* Slight rounding for modern look */
     filter: drop-shadow(0px 10px 10px #01be9551);
-    :hover {
+    transition: filter 0.3s ease;
+    
+    &:hover {
       filter: drop-shadow(0px 10px 10px #01be9570);
+    }
+    
+    @media (max-width: 768px) {
+      margin: 1.5rem 0;
+      width: 100%;
     }
   }
 `;
+
 const Social = styled.div`
-  margin-top: 3rem;
+  margin: 2rem 0;
   display: flex;
   align-items: center;
   gap: 1rem;
+  flex-wrap: wrap; /* Allow wrapping on small screens */
+  
   p {
-    font-size: 0.9rem;
-    @media (max-width: 690px) {
-      font-size: 0.7rem;
-    }
+    font-size: clamp(0.8rem, 1.5vw, 1rem);
+    margin: 0;
   }
 
   .social-icons {
-    padding-top:70px;
     display: flex;
     align-items: center;
     gap: 1rem;
+    flex-wrap: wrap;
+    
     span {
       width: 2.3rem;
       height: 2rem;
@@ -143,8 +173,14 @@ const Social = styled.div`
       background-color: #60ebe4;
       position: relative;
       transition: transform 400ms ease-in-out;
-      :hover {
+      
+      &:hover {
         transform: rotate(360deg);
+      }
+      
+      @media (max-width: 480px) {
+        width: 2rem;
+        height: 1.7rem;
       }
     }
 
@@ -154,30 +190,44 @@ const Social = styled.div`
       top: 55%;
       left: 50%;
       transform: translate(-50%, -50%);
+      font-size: 0.9rem;
+      
+      @media (max-width: 480px) {
+        font-size: 0.8rem;
+      }
     }
   }
 `;
+
 const Profile = styled.div`
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  
   img {
-   padding-top: 8rem;
-   
-    width: 20rem;
+    width: 100%;
+    max-width: 25rem;
+    height: auto;
     filter: drop-shadow(0px 10px 10px #01be9570);
     transition: transform 400ms ease-in-out;
-    @media (max-width: 790px) {
-      width: 20rem;
+    
+    @media (max-width: 1024px) {
+      max-width: 20rem;
     }
-
-    @media (max-width: 660px) {
-      width: 18rem;
+    
+    @media (max-width: 768px) {
+      max-width: 18rem;
+      margin: 0 auto;
+      padding-top: 2rem;
     }
-
-    @media (max-width: 640px) {
-      width: 100%;
+    
+    @media (max-width: 480px) {
+      max-width: 100%;
+      padding-top: 1rem;
     }
   }
 
-  :hover img {
+  &:hover img {
     transform: translateY(-10px);
   }
-`;
+`
