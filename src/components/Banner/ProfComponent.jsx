@@ -19,7 +19,7 @@ function ProfComponent() {
           <h4>
           Great things aren't built in a day—they're refined through effort and dedication.
           </h4>
-          <a href="https://drive.google.com/file/d/1stEh8kycPgGbF8ZuEDnY5AE9vmvibYjb/view?usp=drive_link"target="_blank">
+          <a href="https://drive.google.com/file/d/1QAqFrk8zpH_1E6SDF1FraQidqOIizQ5t/view?usp=drive_link"target="_blank">
           <button>Check My Resume </button></a>
           <Social>
             <p>Check out my</p>
