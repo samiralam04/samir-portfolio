@@ -1,27 +1,52 @@
 import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
-import { MdAlternateEmail } from "react-icons/md";
-import { CgProfile } from "react-icons/cg";
-import { HiOutlineMailOpen } from "react-icons/hi";
-import { AiFillGithub, AiFillLinkedin, AiOutlineArrowUp } from "react-icons/ai";
-import { BsSlack } from "react-icons/bs";
-import { FiMessageSquare, FiPhoneCall } from "react-icons/fi";
+import { 
+  MdAlternateEmail, 
+  MdSchool, 
+  MdLocationOn,
+  MdSend
+} from "react-icons/md";
+import { FaUser, FaGithub, FaLinkedin, FaInstagram, FaSlack } from "react-icons/fa";
+import { 
+  HiOutlineMailOpen, 
+  HiOutlinePhone 
+} from "react-icons/hi";
+import { 
+  AiOutlineArrowUp, 
+  AiOutlineMessage 
+} from "react-icons/ai";
 import { Slide, Zoom, Fade } from "react-awesome-reveal";
-import { FaInstagram } from "react-icons/fa";
-import dp from './dp.png';
+import { motion } from "framer-motion";
+import dp from './profile.png';
 
-// Loading Spinner Component
+// Animations
+const gradient = keyframes`
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+`;
+
+const float = keyframes`
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+`;
+
 const spin = keyframes`
-  to {
-    transform: rotate(360deg);
-  }
+  to { transform: rotate(360deg); }
+`;
+
+const pulse = keyframes`
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
 `;
 
 const LoadingSpinner = styled.div`
   display: inline-block;
   width: 50px;
   height: 50px;
-  border: 5px solid rgba(96, 235, 228, 0.3);
+  border: 3px solid rgba(96, 235, 228, 0.3);
   border-radius: 50%;
   border-top-color: #60ebe4;
   animation: ${spin} 1s ease-in-out infinite;
@@ -29,15 +54,14 @@ const LoadingSpinner = styled.div`
 `;
 
 const Footer = () => {
-  // Form data state
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: ''
   });
 
-  const [showPopup, setShowPopup] = useState(false); // Success message
-  const [loading, setLoading] = useState(false);     // Loading state
+  const [showPopup, setShowPopup] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const scrollUp = () => {
     window.scroll({
@@ -56,16 +80,13 @@ const Footer = () => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-
     const apiKey = process.env.REACT_APP_API_KEY;
     const formDataObj = new FormData(event.target);
     formDataObj.append("access_key", apiKey);
     formDataObj.append("subject", `${formDataObj.get('name')} sent you a message from your portfolio!`);
     const json = JSON.stringify(Object.fromEntries(formDataObj));
 
-    // Show loading popup
     setLoading(true);
-
     const res = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
       headers: {
@@ -75,355 +96,663 @@ const Footer = () => {
       body: json
     }).then((res) => res.json());
 
-    setLoading(false); // Hide loading popup
-
+    setLoading(false);
     if (res.success) {
-      console.log("Success", res);
-
-      setFormData({
-        name: '',
-        email: '',
-        message: ''
-      });
-      setShowPopup(true); // Show thank you popup
+      setFormData({ name: '', email: '', message: '' });
+      setShowPopup(true);
     }
   };
 
   return (
-    <>
-      <Container id="footer">
-        {/* Left Profile Section */}
-        <Profile>
+    <FooterContainer id="footer">
+      {/* Background Gradient */}
+      <BackgroundGradient />
+      
+      {/* Main Content */}
+      <ContentWrapper>
+        {/* Profile Section */}
+        <ProfileSection>
           <Slide direction="left" delay={1}>
-            <h1>Portfolio</h1>
+            <SectionTitle>
+              <GradientText>Let's Connect</GradientText>
+            </SectionTitle>
           </Slide>
-          <div className="address">
-            <Slide direction="left"><h1>Education:</h1></Slide>
-            <Slide direction="left"><p>Bachelor of Computer Applications (BCA)</p></Slide>
-          </div>
-          <div className="links">
-            <Slide direction="left"><h1>Contact me directly:</h1></Slide>
-            <div>
-              <span><FiPhoneCall /></span>
-              <Slide direction="left"><a href="tel:+917604986674">+917604986674</a></Slide>
-            </div>
-            <div>
-              <Slide direction="left"><span><HiOutlineMailOpen /></span></Slide>
-              <Slide><a href="mailto:samiralam7005@gmail.com">samiralam7005@gmail.com</a></Slide>
-            </div>
-          </div>
-          <div className="profiles">
-            <Slide direction="left"><h1>Check my profiles</h1></Slide>
-            <div className="icons">
-              <Zoom><span><a href="https://github.com/samiralam04" target="_blank"><AiFillGithub /></a></span></Zoom>
-              <Zoom><span><a href="https://www.linkedin.com/in/samir-alam-3756582b6?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><AiFillLinkedin /></a></span></Zoom>
-              <Zoom><span><a href="https://www.instagram.com/samir.__.04" target="_blank"><FaInstagram /></a></span></Zoom>
-              <Zoom><span><a href="#"><BsSlack /></a></span></Zoom>
-            </div>
-          </div>
+          
+          <InfoBlock>
+            <Slide direction="left">
+              <InfoTitle>
+                <InfoIcon><MdSchool /></InfoIcon>
+                Education
+              </InfoTitle>
+              <InfoText>Bachelor of Computer Applications (BCA)</InfoText>
+            </Slide>
+          </InfoBlock>
+          
+          <ContactBlock>
+            <Slide direction="left">
+              <InfoTitle>
+                <InfoIcon><HiOutlinePhone /></InfoIcon>
+                Contact me
+              </InfoTitle>
+            </Slide>
+            <ContactItem>
+              <ContactIcon><HiOutlinePhone /></ContactIcon>
+              <Slide direction="left">
+                <ContactLink href="tel:+917604986674">+91 76049 86674</ContactLink>
+              </Slide>
+            </ContactItem>
+            <ContactItem>
+              <Slide direction="left">
+                <ContactIcon><HiOutlineMailOpen /></ContactIcon>
+              </Slide>
+              <Slide>
+                <ContactLink href="mailto:samiralam7005@gmail.com">samiralam7005@gmail.com</ContactLink>
+              </Slide>
+            </ContactItem>
+            <ContactItem>
+              <Slide direction="left">
+                <ContactIcon><MdLocationOn /></ContactIcon>
+              </Slide>
+              <Slide>
+                <ContactText>India</ContactText>
+              </Slide>
+            </ContactItem>
+          </ContactBlock>
+          
+          <SocialBlock>
+            <Slide direction="left">
+              <InfoTitle>
+                <InfoIcon><FaUser /></InfoIcon>
+                Social Profiles
+              </InfoTitle>
+            </Slide>
+            <SocialIcons>
+              <SocialIcon>
+                <Zoom>
+                  <SocialLink 
+                    href="https://github.com/samiralam04" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    aria-label="GitHub"
+                    whileHover={{ y: -5 }}
+                  >
+                    <FaGithub />
+                  </SocialLink>
+                </Zoom>
+              </SocialIcon>
+              <SocialIcon>
+                <Zoom>
+                  <SocialLink 
+                    href="https://www.linkedin.com/in/samir-alam-3756582b6" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn"
+                    whileHover={{ y: -5 }}
+                  >
+                    <FaLinkedin />
+                  </SocialLink>
+                </Zoom>
+              </SocialIcon>
+              <SocialIcon>
+                <Zoom>
+                  <SocialLink 
+                    href="https://www.instagram.com/samir.__.04" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    aria-label="Instagram"
+                    whileHover={{ y: -5 }}
+                  >
+                    <FaInstagram />
+                  </SocialLink>
+                </Zoom>
+              </SocialIcon>
+              <SocialIcon>
+                <Zoom>
+                  <SocialLink 
+                    href="#" 
+                    aria-label="Slack"
+                    whileHover={{ y: -5 }}
+                  >
+                    <FaSlack />
+                  </SocialLink>
+                </Zoom>
+              </SocialIcon>
+            </SocialIcons>
+          </SocialBlock>
+          
           <Fade>
-            <ArrowUp onClick={scrollUp}><AiOutlineArrowUp /></ArrowUp>
+            <ScrollUpButton 
+              onClick={scrollUp} 
+              aria-label="Scroll to top"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <AiOutlineArrowUp />
+            </ScrollUpButton>
           </Fade>
-        </Profile>
+        </ProfileSection>
 
-        {/* Contact Form Section */}
-        <Slide direction="right">
-          <FormContainer onSubmit={onSubmit}>
-            <div className="name">
-              <span><CgProfile /></span>
-              <input
-                type="text" placeholder="Enter Your Name" required
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="email">
-              <span><MdAlternateEmail /></span>
-              <input
-                type="email" placeholder="example@domain.com" required
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="message">
-              <span className="messageIcon"><FiMessageSquare /></span>
-              <textarea
-                name="message" placeholder="Your message..." style={{ paddingTop: '40px' }} required
-                value={formData.message}
-                onChange={handleChange}
-              />
-            </div>
-            <button type="submit">Submit Form</button>
-          </FormContainer>
-        </Slide>
+        {/* Contact Form */}
+        <FormSection>
+          <Slide direction="right">
+            <ContactForm onSubmit={onSubmit}>
+              <FormTitle>Send me a message</FormTitle>
+              <FormSubtitle>I'll respond as soon as possible</FormSubtitle>
+              
+              <InputGroup>
+                <InputIcon><FaUser /></InputIcon>
+                <InputField
+                  type="text"
+                  placeholder="Enter Your Name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                />
+              </InputGroup>
+              
+              <InputGroup>
+                <InputIcon><MdAlternateEmail /></InputIcon>
+                <InputField
+                  type="email"
+                  placeholder="example@domain.com"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                />
+              </InputGroup>
+              
+              <InputGroup className="message">
+                <InputIcon className="messageIcon"><AiOutlineMessage /></InputIcon>
+                <TextArea
+                  name="message"
+                  placeholder="Your message..."
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                />
+              </InputGroup>
+              
+              <SubmitButton 
+                type="submit"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <MdSend /> Send Message
+              </SubmitButton>
+            </ContactForm>
+          </Slide>
+        </FormSection>
+      </ContentWrapper>
 
-        {/* Loading Popup */}
-        {loading && (
-          <Popup>
-            <PopupContent>
-              <LoadingSpinner />
-              <h2>Sending...</h2>
-              <p>Please wait while your message is being sent.</p>
-            </PopupContent>
-          </Popup>
-        )}
+      {/* Loading Popup */}
+      {loading && (
+        <ModalOverlay>
+          <ModalContent>
+            <LoadingSpinner />
+            <ModalTitle>Sending your message...</ModalTitle>
+            <ModalText>Please wait while we deliver your message.</ModalText>
+          </ModalContent>
+        </ModalOverlay>
+      )}
 
-        {/* Success Message Popup */}
-        {showPopup && (
-          <Popup>
-            <PopupContent>
-              <h2>Thank you!</h2>
-              <p>Your form has been submitted successfully.</p>
-              <button onClick={() => setShowPopup(false)}>Close</button>
-            </PopupContent>
-          </Popup>
-        )}
-      </Container>
+      {/* Success Popup */}
+      {showPopup && (
+        <ModalOverlay>
+          <ModalContent
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ type: 'spring', stiffness: 300 }}
+          >
+            <SuccessIcon>✓</SuccessIcon>
+            <ModalTitle>Message Sent!</ModalTitle>
+            <ModalText>Thank you for reaching out. I'll get back to you soon.</ModalText>
+            <ModalButton 
+              onClick={() => setShowPopup(false)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Close
+            </ModalButton>
+          </ModalContent>
+        </ModalOverlay>
+      )}
 
       {/* Copyright */}
-      <Copyright>
-        <p style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "10px" }}>
-          <img src={dp} alt="Logo" style={{ width: "20px", height: "20px", borderRadius: "50%" }} />
-          © 2024 Samir Alam. All Rights Reserved.
-        </p>
-      </Copyright>
-    </>
+      <CopyrightSection>
+        <CopyrightText>
+          <LogoImage src={dp} alt="Samir Alam" />
+          © {new Date().getFullYear()} Samir Alam. All Rights Reserved.
+        </CopyrightText>
+      </CopyrightSection>
+    </FooterContainer>
   );
 };
 
 export default Footer;
 
-const Copyright = styled.div`
-  background-color:var(---background); 
-  color: #fff;
-  text-align: center; 
-  padding: 1rem 0; 
-  font-size: 0.9rem; 
+// Styled Components
+const FooterContainer = styled.footer`
+  position: relative;
+  padding: 6rem 0 0;
+  background: linear-gradient(-45deg, #0f0f1a, #1a1a2e, #16213e, #0f3460);
+  background-size: 400% 400%;
+  animation: ${gradient} 15s ease infinite;
+  overflow: hidden;
 `;
 
-const Container = styled.div`
-  margin-top: 2rem;
-  position: relative;
-  padding: 2rem 0;
-  width: 80%;
-  max-width: 1280px;
+const BackgroundGradient = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(96, 235, 228, 0.1) 0%, transparent 30%),
+    radial-gradient(circle at 80% 70%, rgba(58, 123, 213, 0.1) 0%, transparent 30%);
+  pointer-events: none;
+  animation: ${float} 8s ease-in-out infinite alternate;
+`;
+
+const ContentWrapper = styled.div`
+  width: 85%;
+  max-width: 1440px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  @media (max-width: 840px) {
+  gap: 3rem;
+  position: relative;
+  z-index: 2;
+
+  @media (max-width: 1024px) {
     width: 90%;
   }
 
-  @media (max-width: 650px) {
+  @media (max-width: 768px) {
     flex-direction: column;
-    gap: 3rem;
+    gap: 2rem;
   }
 `;
-const Profile = styled.div`
+
+const ProfileSection = styled.div`
   flex: 1;
-  .address {
-    padding: 1rem 0;
-    h1 {
-      font-size: 1.2rem;
-    }
+  padding: 2rem 0;
+  max-width: 500px;
 
-    p {
-      width: 60%;
-      padding-top: 0.5rem;
-      @media (max-width: 650px) {
-        width: 100%;
-      }
-    }
-  }
-
-  .links {
-    h1 {
-      font-size: 1.2rem;
-      margin-bottom: 0.5rem;
-    }
-
-    div {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      a {
-        text-decoration: none;
-        color: lightgray;
-        :hover {
-          color: #60ebe4;
-        }
-      }
-    }
-  }
-  }
-
-  .profiles {
-    h1 {
-      font-size: 1.2rem;
-      padding: 1rem 0;
-    }
-
-    .icons {
-      display: flex;
-      align-items: center;
-
-      span {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #000;
-        width: 2rem;
-        height: 2rem;
-        margin-right: 0.5rem;
-        border-radius: 50px;
-
-        :hover {
-          background-color: #60ebe4;
-        }
-
-        a {
-          margin-top: 0.2rem;
-          color: #fff;
-        }
-      }
-    }
+  @media (max-width: 768px) {
+    max-width: 100%;
   }
 `;
-const ArrowUp = styled.div`
-  width: 2rem;
-  height: 2rem;
-  background-color: #60ebe4;
+
+const SectionTitle = styled.h1`
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 2rem;
+  line-height: 1.2;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
+`;
+
+const GradientText = styled.span`
+  background: linear-gradient(90deg, #60ebe4, #3a7bd5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% 100%;
+  animation: ${gradient} 6s ease infinite;
+`;
+
+const InfoBlock = styled.div`
+  padding: 1.5rem 0;
+`;
+
+const InfoTitle = styled.h2`
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+`;
+
+const InfoIcon = styled.span`
+  color: #60ebe4;
+  font-size: 1.2rem;
+  display: flex;
+`;
+
+const InfoText = styled.p`
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  margin-left: 1.7rem;
+`;
+
+const ContactBlock = styled.div`
+  margin: 2rem 0;
+`;
+
+const ContactItem = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0;
+`;
+
+const ContactIcon = styled.span`
+  color: #60ebe4;
+  font-size: 1.2rem;
+  min-width: 20px;
+  display: flex;
+`;
+
+const ContactLink = styled.a`
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  word-break: break-all;
+  
+  &:hover {
+    color: #60ebe4;
+    text-decoration: underline;
+  }
+`;
+
+const ContactText = styled.span`
+  color: rgba(255, 255, 255, 0.8);
+`;
+
+const SocialBlock = styled.div`
+  margin: 2rem 0;
+`;
+
+const SocialIcons = styled.div`
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+`;
+
+const SocialIcon = styled(motion.div)`
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  
+  &:hover {
+    background: linear-gradient(90deg, #60ebe4, #3a7bd5);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(96, 235, 228, 0.3);
+  }
+
+  @media (max-width: 480px) {
+    width: 40px;
+    height: 40px;
+  }
+`;
+
+const SocialLink = styled(motion.a)`
+  color: #fff;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+`;
+
+const ScrollUpButton = styled(motion.button)`
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(90deg, #60ebe4, #3a7bd5);
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-size: 1.3rem;
-  font-weight: 700;
+  font-size: 1.5rem;
+  color: #fff;
+  transition: all 0.3s ease;
   margin-top: 2rem;
-  @media (max-width: 650px) {
-    position: absolute;
-    right: 3rem;
-    top: 16rem;
+  box-shadow: 0 5px 15px rgba(96, 235, 228, 0.3);
+  border: none;
+  outline: none;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(96, 235, 228, 0.4);
+  }
+
+  @media (max-width: 768px) {
+    position: fixed;
+    right: 2rem;
+    bottom: 2rem;
+    margin-top: 0;
+    z-index: 10;
   }
 `;
 
-const FormContainer = styled.form`
+const FormSection = styled.div`
   flex: 1;
+  padding: 2rem 0;
+  max-width: 500px;
 
-  h1 {
-    font-size: 1.3rem;
-    padding-bottom: 0.7rem;
-  }
-
-  .name,
-  .email,
-  .message {
-    width: 450px; /* Keep the original width */
-    display: flex;
-    border: 1px solid gray;
-    border-radius: 5px;
-    padding: 10px;
-    box-sizing: border-box;
-    margin-bottom: 0.5rem;
-
-    input,
-    textarea {
-      width: 100%; /* Set width to 100% to fill the parent container */
-      border: none;
-      outline: none;
-      color: #fff;
-      background-color: transparent;
-      padding: 1rem 0.5rem;
-      margin-bottom: 0.5rem;
-    }
-
-    span {
-      background-color: #3e3e3e;
-      width: 3rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-left: -5px;
-    }
-
-    .messageIcon {
-      align-items: center;
-      svg {
-        font-size: 1rem;
-      }
-      padding-top: 0.5rem;
-    }
-  }
-
-  button {
-    width: 450px; /* Keep the original width */
-    height: 2rem;
-    background-color: #60ebe4;
-    border: none;
-    border-radius: 5px;
-    filter: drop-shadow(0px 4px 5px #01be9551);
-    cursor: pointer;
-    align-self: center;
-
-    &:hover {
-      filter: drop-shadow(0px 6px 9px #01be9551);
-    }
-  }
-
-  @media (max-width: 768px) { /* Adjust based on your desired breakpoint */
-    .name,
-    .email,
-    .message,
-    button {
-      width: 100%; /* Set width to 100% for smaller screens */
-    }
+  @media (max-width: 768px) {
+    max-width: 100%;
   }
 `;
 
-const Popup = styled.div`
+const ContactForm = styled.form`
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 15px 40px rgba(96, 235, 228, 0.2);
+  }
+`;
+
+const FormTitle = styled.h2`
+  font-size: 1.8rem;
+  color: #fff;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+`;
+
+const FormSubtitle = styled.p`
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+`;
+
+const InputGroup = styled.div`
+  position: relative;
+  margin-bottom: 1.5rem;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+
+  &:focus-within {
+    border-color: #60ebe4;
+    box-shadow: 0 0 0 2px rgba(96, 235, 228, 0.2);
+  }
+
+  &.message {
+    height: 150px;
+  }
+`;
+
+const InputIcon = styled.span`
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.7);
+  background: rgba(96, 235, 228, 0.1);
+  
+  &.messageIcon {
+    align-items: flex-start;
+    padding-top: 1rem;
+  }
+`;
+
+const InputField = styled.input`
+  width: 100%;
+  padding: 1rem 1rem 1rem 60px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
+  font-family: inherit;
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+`;
+
+const TextArea = styled.textarea`
+  width: 100%;
+  height: 100%;
+  padding: 1rem 1rem 1rem 60px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
+  resize: none;
+  font-family: inherit;
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+`;
+
+const SubmitButton = styled(motion.button)`
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(90deg, #60ebe4, #3a7bd5);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(96, 235, 228, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  
+  &:hover {
+    background: linear-gradient(90deg, #3a7bd5, #60ebe4);
+  }
+`;
+
+const ModalOverlay = styled.div`
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.7);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
+  backdrop-filter: blur(5px);
 `;
 
-const PopupContent = styled.div`
-  background-color: #494D5F;
-  padding: 3rem;
-  border-radius: 5px;
+const ModalContent = styled(motion.div)`
+  background: #1a1a2e;
+  padding: 2.5rem;
+  border-radius: 15px;
   text-align: center;
-  max-width: 300px;
+  max-width: 400px;
   width: 90%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(96, 235, 228, 0.2);
+`;
 
-  h2 {
-    margin-bottom: 1rem;
-    color: #60ebe4;
-  }
+const SuccessIcon = styled.div`
+  width: 60px;
+  height: 60px;
+  background: #60ebe4;
+  color: #1a1a2e;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0 auto 1rem;
+  animation: ${pulse} 1.5s infinite;
+`;
 
-  p {
-    margin-bottom: 1.5rem;
-    color: #fff;
-  }
+const ModalTitle = styled.h2`
+  color: #60ebe4;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+`;
 
-  button {
-    padding: 0.5rem 1rem;
-    background-color: #60ebe4;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+const ModalText = styled.p`
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+`;
 
-    &:hover {
-      background-color: #4bc3c0;
-    }
-  }
+const ModalButton = styled(motion.button)`
+  padding: 0.7rem 1.5rem;
+  background: linear-gradient(90deg, #60ebe4, #3a7bd5);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+`;
+
+const CopyrightSection = styled.div`
+  background: rgba(10, 10, 20, 0.7);
+  padding: 1.5rem 0;
+  text-align: center;
+  margin-top: 3rem;
+  position: relative;
+  z-index: 2;
+`;
+
+const CopyrightText = styled.p`
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+`;
+
+const LogoImage = styled.img`
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  object-fit: cover;
 `;

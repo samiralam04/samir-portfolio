@@ -33,7 +33,7 @@ const Services = () => {
         <Slide direction="right">
           <Card
             Icon={MdBugReport}
-            title={"Debugging and Optimization"}
+            title={" Debugging"}
             disc={`Identifying and resolving bugs, improving code performance, and optimizing applications to ensure smooth and error-free functionality.`}
           />
         </Slide>
