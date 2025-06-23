@@ -23,7 +23,7 @@ const programmingQuotes = [
     icon: <RiLightbulbFlashLine /> 
   },
   {
-    text: "Behind every pixel is a function. Behind every function is a developer who didn’t sleep.",
+    text: "Behind every pixel is a function. Behind every function is a developer who didn't sleep.",
     icon: <TbBrandNodejs /> 
   },
   {
@@ -75,17 +75,42 @@ function ProfComponent() {
               <NameSection>
                 <motion.h1 
                   className="gradient-text"
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ 
+                    opacity: 1, 
+                    scale: 1,
+                    transition: {
+                      duration: 0.6,
+                      delay: 0.3,
+                      type: "spring",
+                      stiffness: 100,
+                      damping: 10
+                    }
+                  }}
+                  whileHover={{
+                    scale: 1.02,
+                    transition: { duration: 0.3 }
+                  }}
                 >
                   Samir Alam
                 </motion.h1>
                 <motion.h2 
                   className="role-text"
                   initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
+                  animate={{ 
+                    opacity: 1, 
+                    y: 0,
+                    transition: {
+                      duration: 0.6,
+                      delay: 0.4,
+                      type: "spring",
+                      stiffness: 100
+                    }
+                  }}
+                  whileHover={{
+                    x: [0, 5, -5, 5, -5, 0],
+                    transition: { duration: 0.6 }
+                  }}
                 >
                   Full Stack Developer
                 </motion.h2>
@@ -94,58 +119,86 @@ function ProfComponent() {
               <PhilosophySection>
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ 
-                    duration: 0.6, 
-                    delay: 0.5,
-                    type: "spring",
-                    damping: 10,
-                    stiffness: 100
+                  animate={{ 
+                    opacity: 1, 
+                    scale: 1,
+                    transition: { 
+                      duration: 0.6, 
+                      delay: 0.5,
+                      type: "spring",
+                      damping: 10,
+                      stiffness: 100
+                    }
+                  }}
+                  whileHover={{
+                    scale: 1.02,
+                    transition: { duration: 0.3 }
                   }}
                 >
                   <PhilosophyText>
                     <PhilosophyIcon>
-                      
                       <FiAward className="award-icon" />
                     </PhilosophyIcon>
-                    Great things aren't built in a day—they're refined through effort and dedication.
+                    <motion.span
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.7 }}
+                    >
+                      Great things aren't built in a day—they're refined through effort and dedication.
+                    </motion.span>
                   </PhilosophyText>
                 </motion.div>
               </PhilosophySection>
               
               <QuoteSection>
-                <QuoteContainer>
-                  <QuoteBorderTop />
-                  <QuoteBorderBottom />
-                  <motion.div
-                    key={currentQuote}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.6 }}
-                  >
-                    <QuoteContent>
-                      <QuoteIcon>
-                        <Fade>
-                          {programmingQuotes[currentQuote].icon}
-                        </Fade>
-                      </QuoteIcon>
-                      <QuoteText>
-                        {programmingQuotes[currentQuote].text}
-                      </QuoteText>
-                    </QuoteContent>
-                  </motion.div>
-                  <QuoteProgress>
-                    {programmingQuotes.map((_, index) => (
-                      <QuoteDot 
-                        key={index} 
-                        $active={index === currentQuote}
-                        onClick={() => setCurrentQuote(index)}
-                        aria-label={`View quote ${index + 1}`}
-                      />
-                    ))}
-                  </QuoteProgress>
-                </QuoteContainer>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.8 }}
+                >
+                  <QuoteContainer>
+                    <QuoteBorderTop />
+                    <QuoteBorderBottom />
+                    <motion.div
+                      key={currentQuote}
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ 
+                        opacity: 1, 
+                        scale: 1,
+                        transition: { 
+                          duration: 0.6,
+                          type: "spring",
+                          stiffness: 200,
+                          damping: 15
+                        }
+                      }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                    >
+                      <QuoteContent>
+                        <QuoteIcon>
+                          <Fade>
+                            {programmingQuotes[currentQuote].icon}
+                          </Fade>
+                        </QuoteIcon>
+                        <QuoteText>
+                          {programmingQuotes[currentQuote].text}
+                        </QuoteText>
+                      </QuoteContent>
+                    </motion.div>
+                    <QuoteProgress>
+                      {programmingQuotes.map((_, index) => (
+                        <QuoteDot 
+                          key={index} 
+                          $active={index === currentQuote}
+                          onClick={() => setCurrentQuote(index)}
+                          aria-label={`View quote ${index + 1}`}
+                          whileHover={{ scale: 1.5 }}
+                          whileTap={{ scale: 0.8 }}
+                        />
+                      ))}
+                    </QuoteProgress>
+                  </QuoteContainer>
+                </motion.div>
               </QuoteSection>
               
               <ActionSection>
@@ -153,11 +206,22 @@ function ProfComponent() {
                   href="https://drive.google.com/file/d/1fgQlYBq4doeB4ZmEtjtq4rpAnjZInBx4/view?usp=drive_link" 
                   target="_blank"
                   rel="noopener noreferrer"
-                  whileHover={{ scale: 1.05, y: -3 }}
+                  whileHover={{ 
+                    scale: 1.05, 
+                    y: -3,
+                    boxShadow: "0 8px 30px rgba(102, 126, 234, 0.7)"
+                  }}
                   whileTap={{ scale: 0.98 }}
                   initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.6 }}
+                  animate={{ 
+                    opacity: 1, 
+                    y: 0,
+                    transition: { 
+                      duration: 0.6, 
+                      delay: 0.9,
+                      type: "spring"
+                    }
+                  }}
                   aria-label="Download Resume"
                 >
                   <FaFileDownload />
@@ -167,14 +231,26 @@ function ProfComponent() {
               </ActionSection>
               
               <SocialSection>
-                <SocialLabel>Connect with me</SocialLabel>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ 
+                    opacity: 1,
+                    transition: { delay: 1 }
+                  }}
+                >
+                  <SocialLabel>Connect with me</SocialLabel>
+                </motion.div>
                 <SocialIcons>
-                  <Zoom cascade damping={0.1} duration={300}>
+                  <Zoom cascade damping={0.1} duration={300} delay={1000}>
                     <SocialIcon 
                       href="mailto:samiralam7005@gmail.com" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      whileHover={{ y: -8, scale: 1.1 }}
+                      whileHover={{ 
+                        y: -8, 
+                        scale: 1.1,
+                        backgroundColor: "rgba(234, 67, 53, 0.8)"
+                      }}
                       whileTap={{ scale: 0.9 }}
                       $color="#EA4335"
                       aria-label="Email me"
@@ -185,7 +261,11 @@ function ProfComponent() {
                       href="https://github.com/samiralam04" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      whileHover={{ y: -8, scale: 1.1 }}
+                      whileHover={{ 
+                        y: -8, 
+                        scale: 1.1,
+                        backgroundColor: "rgba(51, 51, 51, 0.8)"
+                      }}
                       whileTap={{ scale: 0.9 }}
                       $color="#333"
                       aria-label="My GitHub profile"
@@ -196,7 +276,11 @@ function ProfComponent() {
                       href="https://www.linkedin.com/in/samir-alam-3756582b6" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      whileHover={{ y: -8, scale: 1.1 }}
+                      whileHover={{ 
+                        y: -8, 
+                        scale: 1.1,
+                        backgroundColor: "rgba(10, 102, 194, 0.8)"
+                      }}
                       whileTap={{ scale: 0.9 }}
                       $color="#0A66C2"
                       aria-label="My LinkedIn profile"
@@ -321,6 +405,7 @@ const AnimatedBackground = styled.div`
   z-index: 0;
 `;
 
+
 const Container = styled.div`
   display: grid;
   grid-template-columns: 1.2fr 1fr;
@@ -348,17 +433,30 @@ const Container = styled.div`
   }
 `;
 
+const continuousZoom = keyframes`
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+`;
+
+
+
 const LeftSection = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  
+  animation: ${continuousZoom} 10s ease-in-out infinite;
+
   @media (max-width: 1024px) {
     order: 2;
     text-align: center;
     padding-bottom: 1rem;
   }
 `;
+
 
 const RightSection = styled.div`
   display: flex;
@@ -482,8 +580,6 @@ const PhilosophyIcon = styled.span`
     color: #667eea;
   }
   
-  
-  
   .award-icon {
     position: absolute;
     top: -22px;
@@ -507,12 +603,13 @@ const QuoteSection = styled.div`
 
 const QuoteContainer = styled.div`
   position: relative;
-  background: transparent;
+  background: rgba(255, 255, 255, 0.03);
   border-radius: 16px;
   padding: 2rem;
   overflow: hidden;
   backdrop-filter: blur(10px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 `;
 
 const QuoteBorderTop = styled.div`
@@ -546,6 +643,7 @@ const QuoteIcon = styled.div`
   color: #667eea;
   margin-top: 0.3rem;
   flex-shrink: 0;
+  animation: ${iconFloat} 4s ease-in-out infinite;
 `;
 
 const QuoteText = styled.p`
@@ -567,7 +665,7 @@ const QuoteProgress = styled.div`
   z-index: 1;
 `;
 
-const QuoteDot = styled.button.attrs({ type: 'button' })`
+const QuoteDot = styled(motion.button).attrs({ type: 'button' })`
   width: 5px;
   height: 5px;
   border-radius: 50%;
@@ -579,7 +677,6 @@ const QuoteDot = styled.button.attrs({ type: 'button' })`
   
   &:hover {
     background: #667eea;
-    transform: scale(1.2);
   }
 
   &:focus-visible {
@@ -631,8 +728,6 @@ const ResumeButton = styled(motion.a)`
   cursor: pointer;
   
   &:hover {
-    box-shadow: 0 8px 30px rgba(102, 126, 234, 0.5);
-    
     ${ButtonHoverEffect} {
       transform: translateX(100%);
     }
@@ -692,7 +787,6 @@ const SocialIcon = styled(motion.a)`
   text-decoration: none;
   
   &:hover {
-    background: linear-gradient(90deg, #60ebe4, #3a7bd5);
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(96, 235, 228, 0.3);
   }
