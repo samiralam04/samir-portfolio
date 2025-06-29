@@ -2,46 +2,56 @@ import React from "react";
 import styled, { keyframes } from "styled-components";
 import { FaGithub, FaLinkedin, FaFileDownload } from "react-icons/fa";
 import { HiMail } from "react-icons/hi";
-import { RiCodeSSlashLine, RiLightbulbFlashLine, RiEmotionHappyLine, RiDoubleQuotesL } from "react-icons/ri";
-import { TbBrandTypescript, TbBrandJavascript, TbBrandReact, TbBrandNodejs } from "react-icons/tb";
 import { FiAward, } from "react-icons/fi";
 import { Slide, Zoom, Fade } from "react-awesome-reveal";
 import { motion } from "framer-motion";
 import profilePic from './profile.png';
 
+import { TbLayoutDashboard, TbTerminal2 } from 'react-icons/tb';
+import { FaFigma, FaCodeBranch } from 'react-icons/fa';
+import { BiLayer } from 'react-icons/bi';
+import { RiAlarmWarningLine } from 'react-icons/ri';
+import { SiGit, SiBugatti } from 'react-icons/si';
+import { MdOutlineWarningAmber } from 'react-icons/md';
+
 const programmingQuotes = [
   {
-    text: "Frontend brings the look. Backend brings the logic. Full stack brings the solution.",
-    icon: <TbBrandReact /> 
+    text: "Frontend turns ideas into visuals. Backend turns logic into power. Full stack turns dreams into reality.",
+    icon: <TbLayoutDashboard />
   },
   {
-    text: "A good UI catches the eye. A good API captures the heart.",
-    icon: <TbBrandJavascript /> 
+    text: "A stunning UI grabs attention. A solid API earns trust.",
+    icon: <FaFigma />
   },
   {
-    text: "Full stack is not a role, it's a mindset: design, build, fix, repeat.",
-    icon: <RiLightbulbFlashLine /> 
+    text: "Being full stack is not a title—it's committing to every layer, every day.",
+    icon: <BiLayer />
   },
   {
-    text: "Behind every pixel is a function. Behind every function is a developer who didn't sleep.",
-    icon: <TbBrandNodejs /> 
+    text: "Every beautiful interface has a sleep-deprived function running behind it.",
+    icon: <RiAlarmWarningLine />
   },
   {
-    text: "Writing clean code is not a skill, it's a habit.",
-    icon: <RiCodeSSlashLine /> 
+    text: "Clean code isn't written, it's refactored.",
+    icon: <FaCodeBranch />
   },
   {
-    text: "If (bug) then debug(); else celebrate();",
-    icon: <RiEmotionHappyLine /> 
+    text: "if (bug) { fix(); } else { shipIt(); }",
+    icon: <SiBugatti />
   },
   {
-    text: "The real deploy is the friends we made along the Git push.",
-    icon: <FaGithub /> 
+    text: "git commit -m 'Made friends, broke builds, fixed bugs, deployed magic'",
+    icon: <SiGit />
   },
   {
-    text: "Code is poetry, but production is war.",
-    icon: <TbBrandTypescript /> 
-    }
+    text: "In dev we trust; in prod we panic.",
+    icon: <MdOutlineWarningAmber />
+  },
+  {
+    text: "return (💻 + ☕ + 😴 === undefined); // Full stack life",
+    icon: <TbTerminal2 />
+  }
+
 ];
 
 function ProfComponent() {
