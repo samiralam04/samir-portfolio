@@ -99,6 +99,15 @@ const Header = () => {
                                 Home
                             </NavLink>
                         </NavItem>
+                          <NavItem>
+                            <NavLink 
+                                href="#skills" 
+                                onClick={handleNavClick}
+                                aria-current={window.location.hash === '#skills' ? 'page' : undefined}
+                            >
+                                Skills
+                            </NavLink>
+                        </NavItem>
                         <NavItem>
                             <NavLink 
                                 href="#service" 

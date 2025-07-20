@@ -5,6 +5,7 @@ import Clients from "./components/Clients/Clients";
 import Footer from "./components/Footer/Footer";
 import Projects from "./components/Projects/Projects";
 import Services from "./components/Service/Services";
+import Skills from "./components/skills/SkillsSection";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Header />
         <ProfComponent />
       </Banner>
+      <Skills />
       <Services />
       <LightColor>
         <Projects />

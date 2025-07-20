@@ -362,8 +362,8 @@ const waveAnimation = keyframes`
 `;
 
 const orbitAnimation = keyframes`
-  0% { transform: rotate(0deg) translateX(${props => props.$size}) rotate(0deg); }
-  100% { transform: rotate(360deg) translateX(${props => props.$size}) rotate(-360deg); }
+  0% { transform: rotate(0deg) translateX(calc(${props => props.$size} / 2)) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(calc(${props => props.$size} / 2)) rotate(-360deg); }
 `;
 
 const backgroundAnimation = keyframes`
@@ -872,7 +872,8 @@ const Orbit = styled.div`
   border: 2px dashed ${props => props.$color || 'rgba(102, 126, 234, 0.5)'};
   border-radius: 50%;
   transform-origin: center;
-  animation: ${orbitAnimation} 20s linear infinite;
+  /* Adjust orbitAnimation to correctly apply the size property */
+  animation: ${props => orbitAnimation} 20s linear infinite;
   animation-delay: ${props => props.$delay || '0s'};
   opacity: 0.6;
 `;
