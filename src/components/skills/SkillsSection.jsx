@@ -130,7 +130,7 @@ const Skills = () => {
           transition={{ duration: 0.7, type: "spring", stiffness: 80, damping: 15 }} 
         >
           <Title>
-            My <span className="gradient-text">Technical Skills</span>
+            My <span className="gradient-text">Tech Stack</span>
             <TitleUnderline />
           </Title>
           <Description>
