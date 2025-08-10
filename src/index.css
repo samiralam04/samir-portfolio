@@ -192,3 +192,8 @@ a, button, .project {
     scroll-behavior: auto !important;
   }
 }
+
+@keyframes progress {
+  0% { width: 0%; opacity: 1; }
+  100% { width: 100%; opacity: 1; }
+}
