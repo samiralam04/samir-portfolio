@@ -99,7 +99,7 @@ const Header = () => {
                                 Home
                             </NavLink>
                         </NavItem>
-                          <NavItem>
+                        <NavItem>
                             <NavLink 
                                 href="#skills" 
                                 onClick={handleNavClick}
@@ -128,11 +128,11 @@ const Header = () => {
                         </NavItem>
                         <NavItem>
                             <NavLink 
-                                href="#client" 
+                                href="#coding-progress" 
                                 onClick={handleNavClick}
-                                aria-current={window.location.hash === '#client' ? 'page' : undefined}
+                                aria-current={window.location.hash === '#coding-progress' ? 'page' : undefined}
                             >
-                                Testimonials
+                                Progress
                             </NavLink>
                         </NavItem>
                         <NavItem>
@@ -358,7 +358,7 @@ const LogoText = styled.span`
 
 const NavLinks = styled(motion.ul)`
     display: flex;
-    gap: 2.5rem;
+    gap: 1.5rem;  // Reduced from 2.5rem
     align-items: center;
     list-style: none;
     margin: 0;
@@ -368,17 +368,18 @@ const NavLinks = styled(motion.ul)`
         position: fixed;
         top: 0;
         right: 0;
-        width: 75%;
+        width: 65%;  // Reduced from 75%
         height: 100vh;
         background: linear-gradient(135deg, 
             rgba(20, 25, 40, 0.98) 0%,
             rgba(30, 35, 50, 0.98) 100%);
         backdrop-filter: blur(20px);
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;  // Changed from center
+        padding-top: 6rem;  // Added padding from top
         z-index: 1002;
         box-shadow: -10px 0 50px rgba(0, 0, 0, 0.5);
-        padding: 2rem 0;
+        gap: 0.8rem;  // Reduced gap between items
         
         &::before {
             content: '';
@@ -395,7 +396,7 @@ const NavLinks = styled(motion.ul)`
     }
     
     @media (max-width: 480px) {
-        width: 85%;
+        width: 70%;  // Adjusted for very small screens
     }
 `;
 
@@ -409,16 +410,22 @@ const NavItem = styled.li`
     &:nth-child(3) { animation-delay: 0.3s; }
     &:nth-child(4) { animation-delay: 0.4s; }
     &:nth-child(5) { animation-delay: 0.5s; }
+    &:nth-child(6) { animation-delay: 0.6s; }
+
+    @media (max-width: 768px) {
+        width: 100%;
+        text-align: center;
+    }
 `;
 
 const NavLink = styled.a`
     color: rgba(255, 255, 255, 0.9);
     text-decoration: none;
     font-weight: 500;
-    font-size: 1.1rem;
+    font-size: 1rem;  // Slightly reduced from 1.1rem
     font-family: 'Poppins', sans-serif;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    padding: 0.8rem 1.2rem;
+    padding: 0.6rem 1rem;  // Reduced padding
     position: relative;
     display: inline-block;
     border-radius: 8px;
@@ -474,24 +481,24 @@ const NavLink = styled.a`
     }
 
     @media (max-width: 768px) {
-        font-size: 1.4rem;
-        padding: 1.2rem 2rem;
+        font-size: 1.1rem;  // Reduced from 1.4rem
+        padding: 0.8rem 1.5rem;  // Reduced padding
         display: block;
         width: 100%;
         text-align: center;
-        margin: 0.5rem 0;
+        margin: 0.25rem 0;  // Reduced margin
         
         &:hover, &:focus {
             background: rgba(74, 144, 226, 0.2);
-            transform: translateX(10px);
+            transform: translateX(8px);  // Reduced movement
         }
     }
 `;
 
 const MobileMenuButton = styled(motion.button).attrs({ type: 'button' })`
     display: ${props => props.$isMobile ? 'flex' : 'none'};
-    width: 50px;
-    height: 50px;
+    width: 44px;  // Reduced from 50px
+    height: 44px;  // Reduced from 50px
     border-radius: 12px;
     background: linear-gradient(135deg, 
         rgba(74, 144, 226, 0.2),
@@ -523,7 +530,7 @@ const MobileMenuButton = styled(motion.button).attrs({ type: 'button' })`
     }
 
     svg {
-        font-size: 1.5rem;
+        font-size: 1.3rem;  // Reduced from 1.5rem
         color: #fff;
         transition: all 0.3s ease;
         z-index: 1;
