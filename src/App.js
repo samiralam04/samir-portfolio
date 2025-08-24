@@ -8,6 +8,7 @@ import Projects from "./components/Projects/Projects";
 import Services from "./components/Service/Services";
 import Skills from "./components/skills/SkillsSection";
 import Leetcode from "./components/progressGraph/graph";
+import Bot from './components/Bot/Bot';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -38,6 +39,7 @@ function App() {
 
   return (
     <Container>
+       <Bot />
       <Banner>
         <Header />
         <ProfComponent />

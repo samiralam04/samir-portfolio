@@ -16,8 +16,7 @@ const Projects = () => {
                         <TitleUnderline />
                     </Title>
                     <Description>
-                        Here, you'll find a showcase of my latest and most exciting work, where creativity meets technology. 
-                        Each project reflects my passion for coding and learning.
+                        Here, you'll find a showcase of my latest and most exciting work.
                         <br/><br/>
                         Explore what I've been building recently and see how I bring ideas to life with code.
                     </Description>

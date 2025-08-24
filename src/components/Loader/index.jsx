@@ -1,5 +1,6 @@
 import React, { useMemo, useState, useEffect } from "react";
 import "./styles.css";
+import bot from "./bot.gif"
 
 function Formula({ text, index }) {
   const animationDelay = index * 0.2;
@@ -146,9 +147,11 @@ export default function Loader({ onFinish }) {
 
       {/* Central tech logo */}
   <div className="tech-logo">
-  <div className="logo-symbol">
-    <span>{"🧑🏻‍💻"}</span>
-  </div>
+    <div className="logo-symbol">
+      <img src={bot} alt="Tech Logo" />
+    </div>
+
+
   <div className="logo-circle outer"></div>
   <div className="logo-circle middle"></div>
   <div className="logo-circle inner"></div>
