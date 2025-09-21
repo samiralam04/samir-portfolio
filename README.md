@@ -1,5 +1,5 @@
 
-## Portfolio using React js and styled-components 2024
+## Portfolio using React js and styled-components
 
 <img src="Banner.png" alt="banner"/>
 
