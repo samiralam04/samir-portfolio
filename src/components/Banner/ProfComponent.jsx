@@ -5,7 +5,8 @@ import { HiMail } from "react-icons/hi";
 import { FiAward, } from "react-icons/fi";
 import { Slide, Zoom, Fade } from "react-awesome-reveal";
 import { motion } from "framer-motion";
-import profilePic from './profile.png';
+import profilePic from './pro2.png';
+import profilePicMobile from './profile.png';
 
 import { TbLayoutDashboard, TbTerminal2 } from 'react-icons/tb';
 import { FaFigma, FaCodeBranch } from 'react-icons/fa';
@@ -81,13 +82,13 @@ function ProfComponent() {
                   Hello, <span className="gradient-accent">I'm</span>
                 </motion.h4>
               </WelcomeText>
-              
+
               <NameSection>
-                <motion.h1 
+                <motion.h1
                   className="gradient-text"
                   initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ 
-                    opacity: 1, 
+                  animate={{
+                    opacity: 1,
                     scale: 1,
                     transition: {
                       duration: 0.6,
@@ -104,11 +105,11 @@ function ProfComponent() {
                 >
                   Samir Alam
                 </motion.h1>
-                <motion.h2 
+                <motion.h2
                   className="role-text"
                   initial={{ opacity: 0, y: -20 }}
-                  animate={{ 
-                    opacity: 1, 
+                  animate={{
+                    opacity: 1,
                     y: 0,
                     transition: {
                       duration: 0.6,
@@ -125,15 +126,15 @@ function ProfComponent() {
                   Full Stack Developer
                 </motion.h2>
               </NameSection>
-              
+
               <PhilosophySection>
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ 
-                    opacity: 1, 
+                  animate={{
+                    opacity: 1,
                     scale: 1,
-                    transition: { 
-                      duration: 0.6, 
+                    transition: {
+                      duration: 0.6,
                       delay: 0.5,
                       type: "spring",
                       damping: 10,
@@ -159,7 +160,7 @@ function ProfComponent() {
                   </PhilosophyText>
                 </motion.div>
               </PhilosophySection>
-              
+
               <QuoteSection>
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -172,10 +173,10 @@ function ProfComponent() {
                     <motion.div
                       key={currentQuote}
                       initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ 
-                        opacity: 1, 
+                      animate={{
+                        opacity: 1,
                         scale: 1,
-                        transition: { 
+                        transition: {
                           duration: 0.6,
                           type: "spring",
                           stiffness: 200,
@@ -197,8 +198,8 @@ function ProfComponent() {
                     </motion.div>
                     <QuoteProgress>
                       {programmingQuotes.map((_, index) => (
-                        <QuoteDot 
-                          key={index} 
+                        <QuoteDot
+                          key={index}
                           $active={index === currentQuote}
                           onClick={() => setCurrentQuote(index)}
                           aria-label={`View quote ${index + 1}`}
@@ -210,24 +211,24 @@ function ProfComponent() {
                   </QuoteContainer>
                 </motion.div>
               </QuoteSection>
-              
+
               <ActionSection>
-                <ResumeButton 
-                  href="https://drive.google.com/file/d/1fgQlYBq4doeB4ZmEtjtq4rpAnjZInBx4/view?usp=drive_link" 
+                <ResumeButton
+                  href="https://drive.google.com/file/d/1fgQlYBq4doeB4ZmEtjtq4rpAnjZInBx4/view?usp=drive_link"
                   target="_blank"
                   rel="noopener noreferrer"
-                  whileHover={{ 
-                    scale: 1.05, 
+                  whileHover={{
+                    scale: 1.05,
                     y: -3,
                     boxShadow: "0 8px 30px rgba(102, 126, 234, 0.7)"
                   }}
                   whileTap={{ scale: 0.98 }}
                   initial={{ opacity: 0, y: 20 }}
-                  animate={{ 
-                    opacity: 1, 
+                  animate={{
+                    opacity: 1,
                     y: 0,
-                    transition: { 
-                      duration: 0.6, 
+                    transition: {
+                      duration: 0.6,
                       delay: 0.9,
                       type: "spring"
                     }
@@ -239,11 +240,11 @@ function ProfComponent() {
                   <ButtonHoverEffect />
                 </ResumeButton>
               </ActionSection>
-              
+
               <SocialSection>
                 <motion.div
                   initial={{ opacity: 0 }}
-                  animate={{ 
+                  animate={{
                     opacity: 1,
                     transition: { delay: 1 }
                   }}
@@ -252,12 +253,12 @@ function ProfComponent() {
                 </motion.div>
                 <SocialIcons>
                   <Zoom cascade damping={0.1} duration={300} delay={1000}>
-                    <SocialIcon 
-                      href="mailto:samiralam7005@gmail.com" 
+                    <SocialIcon
+                      href="mailto:samiralam7005@gmail.com"
                       target="_blank"
                       rel="noopener noreferrer"
-                      whileHover={{ 
-                        y: -8, 
+                      whileHover={{
+                        y: -8,
                         scale: 1.1,
                         backgroundColor: "rgba(234, 67, 53, 0.8)"
                       }}
@@ -267,12 +268,12 @@ function ProfComponent() {
                     >
                       <HiMail />
                     </SocialIcon>
-                    <SocialIcon 
-                      href="https://github.com/samiralam04" 
+                    <SocialIcon
+                      href="https://github.com/samiralam04"
                       target="_blank"
                       rel="noopener noreferrer"
-                      whileHover={{ 
-                        y: -8, 
+                      whileHover={{
+                        y: -8,
                         scale: 1.1,
                         backgroundColor: "rgba(51, 51, 51, 0.8)"
                       }}
@@ -282,12 +283,12 @@ function ProfComponent() {
                     >
                       <FaGithub />
                     </SocialIcon>
-                    <SocialIcon 
-                      href="https://www.linkedin.com/in/samir-alam-3756582b6" 
+                    <SocialIcon
+                      href="https://www.linkedin.com/in/samir-alam-3756582b6"
                       target="_blank"
                       rel="noopener noreferrer"
-                      whileHover={{ 
-                        y: -8, 
+                      whileHover={{
+                        y: -8,
                         scale: 1.1,
                         backgroundColor: "rgba(10, 102, 194, 0.8)"
                       }}
@@ -303,25 +304,22 @@ function ProfComponent() {
             </Texts>
           </Slide>
         </LeftSection>
-        
+
         <RightSection>
           <Slide direction="right" triggerOnce>
             <ProfileContainer>
               <ProfileImageWrapper>
-                <ProfileImage 
-                  src={profilePic} 
-                  alt="Samir Alam - Full Stack Developer" 
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  whileHover={{ scale: 1.03 }}
-                />
-                <ImageGlow />
-                <FloatingOrbits>
-                  <Orbit $size="100px" $delay="0s" $color="#667eea" />
-                  <Orbit $size="150px" $delay="0.2s" $color="#764ba2" />
-                  <Orbit $size="200px" $delay="0.4s" $color="#4a90e2" />
-                </FloatingOrbits>
+                <picture>
+                  <source media="(max-width: 768px)" srcSet={profilePicMobile} />
+                  <ProfileImage
+                    src={profilePic}
+                    alt="Samir Alam - Full Stack Developer"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                    whileHover={{ scale: 1.03 }}
+                  />
+                </picture>
               </ProfileImageWrapper>
             </ProfileContainer>
           </Slide>
@@ -371,10 +369,7 @@ const backgroundAnimation = keyframes`
   100% { transform: translate(-50%, -50%) rotate(360deg); }
 `;
 
-const buttonHover = keyframes`
-  0% { transform: translateX(-100%) skewX(-20deg); }
-  100% { transform: translateX(100%) skewX(-20deg); }
-`;
+
 
 const iconPulse = keyframes`
   0%, 100% { transform: scale(1); opacity: 1; }
@@ -821,20 +816,20 @@ const ProfileImageWrapper = styled.div`
 
 const ProfileImage = styled(motion.img)`
   width: 100%;
-  max-width: 28rem;
+  max-width: 33rem; /* Increased from 25rem */
   height: auto;
-  border-radius: 30px;
   position: relative;
   z-index: 2;
-  box-shadow: 0 20px 60px rgba(43, 8, 89, 0.3);
-  border: 3px solid rgba(255, 255, 255, 0.1);
+  margin-left: 5rem; /* Move right on desktop */
+  filter: drop-shadow(0 0 4px rgba(96, 235, 228, 0.6)); 
   
   @media (max-width: 1024px) {
-    max-width: 24rem;
+    max-width: 26rem; /* Increased from 20rem */
+    margin-left: 0; /* Center on smaller screens */
   }
   
   @media (max-width: 768px) {
-    max-width: 20rem;
+    max-width: 20rem; /* Increased from 18rem */
   }
 `;
 

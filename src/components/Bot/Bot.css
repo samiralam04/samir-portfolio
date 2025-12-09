@@ -118,16 +118,10 @@
 /* --- Media Queries --- */
 
 @media (max-width: 1024px) {
-  .bot-container {
-    width: 200px;
-    height: 250px;
-  }
-
+  .bot-container,
+  .minimized-bot,
   .message-popup {
-    max-width: 180px;
-    font-size: 13.25px;
-    padding: 8.5px 12px;
-    border-radius: 11px;
+    display: none !important;
   }
 }
 

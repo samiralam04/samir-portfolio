@@ -10,11 +10,13 @@ const data = [
     disc: "Student Attendance Management System using Java, Servlets, and PostgreSQL to streamline attendance tracking with automated notifications and role-based access.",
     href: "https://github.com/samiralam04/RollWise",
   },
+
   {
-    img: "https://img.freepik.com/premium-vector/lettering-modern-hand-written-text-sticker-planner-bright-text-planning-concept-vector-illustration_565728-492.jpg",
-    disc: "A minimalist To-Do List built with HTML, CSS, and JavaScript, facilitating efficient task management with intuitive design and dynamic functionality.",
-    href: " https://samiralam04.github.io/To-Do-List/",
+    img: "https://media.licdn.com/dms/image/v2/D4D12AQGWQXXbLArsag/article-cover_image-shrink_720_1280/B4DZXlC77gHsAI-/0/1743304518601?e=2147483647&v=beta&t=R0PGMytZj4QTArmeUNAKeh6FZZFftq5OrEqG3fcuFGk",
+    disc: " A full-stack AI-powered application that parses resumes (PDFs) and allows users to interactively chat about the candidate's experience using a modern LLM.",
+    href: "https://github.com/samiralam04/ai-resume-chatbot",
   },
+
   {
     img: "https://mvd.kerala.gov.in/sites/default/files/citizen_corner/dashboards.jpg",
     disc: "A visually engaging dashboard developed with HTML, CSS, and JavaScript, utilizing the Spotify Student API to display trending song details. Users can explore up-to-date information on popular tracks, enhancing their music discovery experience.",
@@ -34,6 +36,12 @@ const data = [
     img: "https://mir-s3-cdn-cf.behance.net/projects/404/8eec89176281219.Y3JvcCw4MDgsNjMyLDAsMA.png",
     disc: " Tiny URL Shortener, A Java servlet-based application that shortens long URLs. It includes user registration, login, and session management, with all data stored securely in a PostgreSQL database.",
     href: "https://github.com/samiralam04/TinyUrl",
+  },
+
+  {
+    img: "https://img.freepik.com/premium-vector/lettering-modern-hand-written-text-sticker-planner-bright-text-planning-concept-vector-illustration_565728-492.jpg",
+    disc: "A minimalist To-Do List built with HTML, CSS, and JavaScript, facilitating efficient task management with intuitive design and dynamic functionality.",
+    href: " https://samiralam04.github.io/To-Do-List/",
   },
   {
     img: "https://www.logoai.com/uploads/output/2022/10/17/9135d68826af2d0802c03554d508446e.jpg",
@@ -117,7 +125,7 @@ const settings = {
 
 const SliderComp = () => {
   const sliderRef = useRef(null);
-  
+
   return (
     <SliderContainer>
       <StyledSlider ref={sliderRef} {...settings}>
@@ -127,15 +135,15 @@ const SliderComp = () => {
           </SlideWrapper>
         ))}
       </StyledSlider>
-      
-      <NavButtonLeft 
-        onClick={() => sliderRef.current?.slickPrev()} 
+
+      <NavButtonLeft
+        onClick={() => sliderRef.current?.slickPrev()}
         aria-label="Previous slide"
       >
         <IoIosArrowBack />
       </NavButtonLeft>
-      <NavButtonRight 
-        onClick={() => sliderRef.current?.slickNext()} 
+      <NavButtonRight
+        onClick={() => sliderRef.current?.slickNext()}
         aria-label="Next slide"
       >
         <IoIosArrowForward />

@@ -22,7 +22,7 @@ const Bot = () => {
     // Check if user has visited before
     const visitedBefore = localStorage.getItem('portfolioVisited');
     setIsFirstVisit(!visitedBefore);
-    
+
     if (!visitedBefore) {
       localStorage.setItem('portfolioVisited', 'true');
     }
@@ -78,13 +78,13 @@ const Bot = () => {
   useEffect(() => {
     const sections = {
       "#home": {
-        text: isFirstVisit 
-          ? (userLocation 
-              ? `👋 Hello from ${userLocation.city}, ${userLocation.country}! Welcome to my portfolio.` 
-              : "👋 Hi there! Welcome to my portfolio.")
-          : (userLocation 
-              ? `👋 Welcome back! Hope you're having a great day in ${userLocation.city}!` 
-              : "👋 Welcome back! Great to see you again!"),
+        text: isFirstVisit
+          ? (userLocation
+            ? `👋 Hello from ${userLocation.city}, ${userLocation.country}! Welcome to my portfolio.`
+            : "👋 Hi there! Welcome to my portfolio.")
+          : (userLocation
+            ? `👋 Welcome back! Hope you're having a great day in ${userLocation.city}!`
+            : "👋 Welcome back! Great to see you again!"),
         styles: getHomeStyles()
       },
       "#project": {
@@ -111,7 +111,7 @@ const Bot = () => {
 
     const handleScroll = () => {
       if (isMinimized) return;
-      
+
       const botHeight = botSize.height;
       const botWidth = botSize.width;
 
@@ -158,7 +158,7 @@ const Bot = () => {
             setMessage({ text: text, visible: true });
           }, 300);
         }
-        
+
         if (botPosition.top !== top || botPosition.left !== left) {
           setIsBotVisible(true);
           setBotPosition({ top, left });
@@ -170,7 +170,9 @@ const Bot = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
-    if (!isMinimized) handleScroll();
+    if (!isMinimized) {
+      setTimeout(() => handleScroll(), 100);
+    }
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -184,13 +186,13 @@ const Bot = () => {
     if (reactionTimeoutRef.current) {
       clearTimeout(reactionTimeoutRef.current);
     }
-    
+
     // Set reaction based on interaction type
     if (type === 'hover') {
       setBotReaction('happy');
     } else if (type === 'click') {
       setBotReaction('excited');
-      
+
       // Return to default after 2 seconds
       reactionTimeoutRef.current = setTimeout(() => {
         setBotReaction('default');
@@ -203,7 +205,7 @@ const Bot = () => {
     if (reactionTimeoutRef.current) {
       clearTimeout(reactionTimeoutRef.current);
     }
-    
+
     if (botReaction !== 'default') {
       reactionTimeoutRef.current = setTimeout(() => {
         setBotReaction('default');
@@ -223,7 +225,7 @@ const Bot = () => {
   const getHomeStyles = () => {
     const width = window.innerWidth;
     const height = window.innerHeight;
-    
+
     if (width === 820 && height === 1180) return { bottom: 600, right: 40 };
     if (width === 1024 && height === 1366) return { bottom: 650, right: 60 };
     if (width === 912 && height === 1368) return { bottom: 640, right: 50 };
@@ -234,13 +236,13 @@ const Bot = () => {
     if (width < 853) return { bottom: 560, right: 38 };
     if (width < 912) return { bottom: 560, right: 40 };
     if (width < 1024) return { bottom: 560, right: 40 };
-    return { bottom: 20, right: -70 };
+    return { bottom: 20, right: 20 };
   };
 
   const getProjectStyles = () => {
     const width = window.innerWidth;
     const height = window.innerHeight;
-    
+
     if (width === 820 && height === 1180) return { top: 350, left: 220 };
     if (width === 1024 && height === 1366) return { top: 250, left: 70 };
     if (width === 912 && height === 1368) return { top: 680, left: 240 };
@@ -259,7 +261,7 @@ const Bot = () => {
   const getSkillsStyles = () => {
     const width = window.innerWidth;
     const height = window.innerHeight;
-    
+
     if (width === 820 && height === 1180) return { top: 500, right: 580 };
     if (width === 1024 && height === 1366) return { top: 650, right: 80 };
     if (width === 912 && height === 1368) return { top: 720, right: 90 };
@@ -276,7 +278,7 @@ const Bot = () => {
   const getServiceStyles = () => {
     const width = window.innerWidth;
     const height = window.innerHeight;
-    
+
     if (width === 820 && height === 1180) return { bottom: 90, left: 540 };
     if (width === 1024 && height === 1366) return { bottom: -50, left: 680 };
     if (width === 912 && height === 1368) return { bottom: 100, left: 550 };
@@ -293,7 +295,7 @@ const Bot = () => {
   const getCodingProgressStyles = () => {
     const width = window.innerWidth;
     const height = window.innerHeight;
-    
+
     if (width === 820 && height === 1180) return { top: 710, left: 240 };
     if (width === 1024 && height === 1366) return { top: 1000, left: 660 };
     if (width === 912 && height === 1368) return { top: 1050, left: 600 };
@@ -310,7 +312,7 @@ const Bot = () => {
   const getFooterStyles = () => {
     const width = window.innerWidth;
     const height = window.innerHeight;
-    
+
     if (width === 820 && height === 1180) return { bottom: 680, left: 570 };
     if (width === 1024 && height === 1366) return { bottom: 140, left: 280 };
     if (width === 912 && height === 1368) return { bottom: 90, left: 275 };
@@ -326,7 +328,7 @@ const Bot = () => {
 
   // Get appropriate animation based on reaction state
   const getAnimationSrc = () => {
-    switch(botReaction) {
+    switch (botReaction) {
       case 'happy':
         return "https://lottie.host/8a18c70a-2d75-4d13-bf9e-6f8e0d7c5b1c/5pQz3X9D9N.lottie";
       case 'excited':
@@ -340,7 +342,7 @@ const Bot = () => {
     <>
       {/* Minimized bot icon */}
       {isMinimized && (
-        <div 
+        <div
           className="minimized-bot"
           onClick={toggleMinimize}
           style={{
@@ -371,7 +373,7 @@ const Bot = () => {
           </div>
         </div>
       )}
-      
+
       {/* Main bot container */}
       <div
         ref={botContainerRef}
@@ -392,14 +394,14 @@ const Bot = () => {
           }}
         >
           {message.text}
-          <button 
+          <button
             className="minimize-btn"
             onClick={toggleMinimize}
             aria-label="Minimize bot"
           >
             x
           </button>
-         
+
         </div>
 
         {/* Bot Animation */}
