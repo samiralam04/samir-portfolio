@@ -67,7 +67,6 @@ function ProfComponent() {
 
   return (
     <BackgroundWrapper>
-      <AnimatedBackground />
       <Container id="home">
         <LeftSection>
           <Slide direction="left" triggerOnce>
@@ -387,7 +386,7 @@ const iconFloat = keyframes`
 const BackgroundWrapper = styled.div`
   width: 100vw;
   min-height: 100vh;
-  background: linear-gradient(135deg,rgb(11, 37, 79),rgb(7, 29, 56),rgb(9, 30, 48));
+  background: var(--bg-dark);
   overflow: hidden;
   position: relative;
   display: flex;
@@ -395,20 +394,7 @@ const BackgroundWrapper = styled.div`
   justify-content: center;
 `;
 
-const AnimatedBackground = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 150%;
-  height: 150%;
-  background: 
-    radial-gradient(circle at 30% 30%, rgba(102, 126, 234, 0.1) 0%, transparent 20%),
-    radial-gradient(circle at 70% 70%, rgba(75, 108, 162, 0.1) 0%, transparent 20%),
-    radial-gradient(circle at 50% 20%, rgba(74, 144, 226, 0.1) 0%, transparent 20%);
-  transform: translate(-50%, -50%);
-  animation: ${backgroundAnimation} 60s linear infinite;
-  z-index: 0;
-`;
+
 
 
 const Container = styled.div`
@@ -493,7 +479,7 @@ const WelcomeText = styled.div`
     margin: 0;
     
     .gradient-accent {
-      background: linear-gradient(90deg, #667eea, #764ba2);
+      background: var(--gradient-main);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -524,7 +510,7 @@ const NameSection = styled.div`
     line-height: 1.1;
     margin: 0;
    
-    background: linear-gradient(90deg, #667eea, #764ba2, #667eea);
+    background: var(--gradient-main);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -547,7 +533,7 @@ const NameSection = styled.div`
       left: 0;
       width: 50px;
       height: 2px;
-      background: linear-gradient(90deg, #667eea, #764ba2);
+      background: var(--gradient-main);
     }
   }
 `;
@@ -582,7 +568,7 @@ const PhilosophyIcon = styled.span`
   
   svg {
     font-size: 1.5rem;
-    color: #667eea;
+    color: var(--accent-secondary);
   }
   
   .award-icon {
@@ -590,7 +576,7 @@ const PhilosophyIcon = styled.span`
     top: -22px;
     right: -8px;
     font-size: 0.8rem;
-    color: #60ebe4;
+    color: var(--accent-primary);
     z-index: 3;
     animation: ${iconPulse} 3s ease-in-out infinite;
     animation-delay: 0.5s;
@@ -623,7 +609,7 @@ const QuoteBorderTop = styled.div`
   left: 0;
   width: 80px;
   height: 3px;
-  background: linear-gradient(90deg, #667eea, #764ba2);
+  background: var(--gradient-main);
   border-radius: 0 0 3px 3px;
 `;
 
@@ -633,7 +619,7 @@ const QuoteBorderBottom = styled.div`
   right: 0;
   width: 80px;
   height: 3px;
-  background: linear-gradient(90deg, #667eea, #764ba2);
+  background: var(--gradient-main);
   border-radius: 3px 3px 0 0;
 `;
 
@@ -645,7 +631,7 @@ const QuoteContent = styled.div`
 
 const QuoteIcon = styled.div`
   font-size: 1.8rem;
-  color: #667eea;
+  color: var(--accent-secondary);
   margin-top: 0.3rem;
   flex-shrink: 0;
   animation: ${iconFloat} 4s ease-in-out infinite;
@@ -674,18 +660,18 @@ const QuoteDot = styled(motion.button).attrs({ type: 'button' })`
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: ${props => props.$active ? '#667eea' : 'rgba(255, 255, 255, 0.2)'};
+  background: ${props => props.$active ? 'var(--accent-secondary)' : 'rgba(255, 255, 255, 0.2)'};
   transition: all 0.3s ease;
   cursor: pointer;
   border: none;
   padding: 0;
   
   &:hover {
-    background: #667eea;
+    background: var(--accent-secondary);
   }
 
   &:focus-visible {
-    outline: 2px solid #667eea;
+    outline: 2px solid var(--accent-secondary);
     outline-offset: 2px;
   }
 `;
@@ -718,13 +704,13 @@ const ResumeButton = styled(motion.a)`
   align-items: center;
   gap: 0.75rem;
   padding: 1rem 2rem;
-  background: linear-gradient(90deg, rgb(96, 235, 228), rgb(58, 123, 213));
-  color: white;
+  background: var(--gradient-main);
+  color: var(--text-primary);
   text-decoration: none;
   border-radius: 12px;
   font-weight: 600;
   font-size: 1rem;
-  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
@@ -821,13 +807,13 @@ const ProfileImage = styled(motion.img)`
   position: relative;
   z-index: 2;
   margin-left: 5rem; /* Move right on desktop */
-  filter: drop-shadow(0 0 4px rgba(96, 235, 228, 0.6)); 
-  
+  filter: drop-shadow(0 0 4px rgba(96, 235, 228, 0.6));
+
   @media (max-width: 1024px) {
     max-width: 26rem; /* Increased from 20rem */
     margin-left: 0; /* Center on smaller screens */
   }
-  
+
   @media (max-width: 768px) {
     max-width: 20rem; /* Increased from 18rem */
   }
@@ -840,7 +826,7 @@ const ImageGlow = styled.div`
   transform: translate(-50%, -50%);
   width: 120%;
   height: 120%;
-  background: linear-gradient(135deg, #667EEA, #764BA2);
+  background: var(--gradient-main);
   border-radius: 50%;
   opacity: 0.3;
   filter: blur(40px);
@@ -864,7 +850,7 @@ const Orbit = styled.div`
   left: 50%;
   width: ${props => props.$size};
   height: ${props => props.$size};
-  border: 2px dashed ${props => props.$color || 'rgba(102, 126, 234, 0.5)'};
+  border: 2px dashed ${props => props.$color || 'var(--accent-secondary)'};
   border-radius: 50%;
   transform-origin: center;
   /* Adjust orbitAnimation to correctly apply the size property */

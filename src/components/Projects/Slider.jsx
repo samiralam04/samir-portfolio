@@ -12,7 +12,7 @@ const data = [
   },
 
   {
-    img: "https://media.licdn.com/dms/image/v2/D4D12AQGWQXXbLArsag/article-cover_image-shrink_720_1280/B4DZXlC77gHsAI-/0/1743304518601?e=2147483647&v=beta&t=R0PGMytZj4QTArmeUNAKeh6FZZFftq5OrEqG3fcuFGk",
+    img: "https://imgs.search.brave.com/C1LOoksPvSCZJMNy3aS9861IY8wF72xZzIPRaGSxzCo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvdGh1/bWJuYWlscy8wMDcv/Nzg2LzY4MC9zbWFs/bC9mbGF0LWRvY3Vt/ZW50LXRhbGstb3It/Y2hhdC1sb2dvLWRl/c2lnbi10ZW1wbGF0/ZS12ZWN0b3IuanBn",
     disc: " A full-stack AI-powered application that parses resumes (PDFs) and allows users to interactively chat about the candidate's experience using a modern LLM.",
     href: "https://github.com/samiralam04/ai-resume-chatbot",
   },
@@ -204,11 +204,11 @@ const NavButton = styled.button`
   transform: translateY(-50%);
   width: 50px;
   height: 50px;
-  background: rgba(58, 123, 213, 0.2);
+  background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
   border-radius: 50%;
-  border: 1px solid rgba(96, 235, 228, 0.3);
-  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -223,9 +223,10 @@ const NavButton = styled.button`
   }
 
   &:hover {
-    background: linear-gradient(135deg, #60ebe4, #3a7bd5);
+    background: var(--gradient-hover);
     transform: translateY(-50%) scale(1.1);
-    box-shadow: 0 8px 25px rgba(96, 235, 228, 0.4);
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+    border-color: transparent;
     
     svg {
       transform: scale(1.2);

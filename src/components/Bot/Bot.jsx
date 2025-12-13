@@ -236,7 +236,7 @@ const Bot = () => {
     if (width < 853) return { bottom: 560, right: 38 };
     if (width < 912) return { bottom: 560, right: 40 };
     if (width < 1024) return { bottom: 560, right: 40 };
-    return { bottom: 20, right: 20 };
+    return { bottom: 20, right: -65 }; // To adjust bot position to move left or right on home section
   };
 
   const getProjectStyles = () => {

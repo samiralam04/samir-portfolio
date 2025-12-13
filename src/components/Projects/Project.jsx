@@ -31,7 +31,7 @@ const Container = styled.div`
 
     &:hover {
         transform: translateY(-5px);
-        box-shadow: 0 15px 30px rgba(96, 235, 228, 0.3);
+        box-shadow: 0 15px 30px rgba(99, 102, 241, 0.3);
     }
 `;
 
@@ -52,8 +52,8 @@ const ProjectOverlay = styled.div`
     left: 0;
     right: 0;
     padding: 1.5rem;
-    background: linear-gradient(to top, rgba(10, 10, 20, 0.9), transparent);
-    color: white;
+    background: linear-gradient(to top, rgba(10, 10, 20, 0.95), transparent);
+    color: var(--text-primary);
     transform: translateY(100%);
     transition: transform 0.4s ease;
     display: flex;
@@ -63,7 +63,7 @@ const ProjectOverlay = styled.div`
     h3 {
         font-size: 1.2rem;
         margin-bottom: 0.5rem;
-        background: linear-gradient(90deg, #60ebe4, #3a7bd5);
+        background: var(--gradient-main);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
@@ -72,6 +72,7 @@ const ProjectOverlay = styled.div`
     p {
         font-size: 0.85rem;
         line-height: 1.5;
+        color: var(--text-secondary);
     }
 
     ${Container}:hover & {
@@ -83,8 +84,8 @@ const DemoButton = styled.a`
     display: inline-block;
     margin-top: 0.8rem;
     padding: 0.5rem 1rem;
-    background: linear-gradient(90deg, #60ebe4, #3a7bd5);
-    color: white;
+    background: var(--gradient-main);
+    color: var(--text-primary);
     text-decoration: none;
     border-radius: 5px;
     font-size: 0.8rem;
@@ -93,7 +94,7 @@ const DemoButton = styled.a`
     text-align: center;
 
     &:hover {
-        background: linear-gradient(90deg, #3a7bd5, #60ebe4);
-        box-shadow: 0 5px 15px rgba(96, 235, 228, 0.4);
+        background: var(--gradient-hover);
+        box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
     }
 `;

@@ -5,29 +5,28 @@ import { Zoom, Fade } from 'react-awesome-reveal';
 import { motion } from 'framer-motion';
 
 const Projects = () => {
-  return (
-    <Container id='project'>
-        <BackgroundGradient />
-        <ContentWrapper>
-            <Zoom triggerOnce>
-                <SectionHeader>
-                    <Title>
-                        Explore <span className="gradient-text">My Latest Creations</span>
-                        <TitleUnderline />
-                    </Title>
-                    <Description>
-                        Here, you'll find a showcase of my latest and most exciting work.
-                        <br/><br/>
-                        Explore what I've been building recently and see how I bring ideas to life with code.
-                    </Description>
-                </SectionHeader>
-            </Zoom>
-            <Fade triggerOnce delay={300}>
-                <SliderComp/>
-            </Fade>
-        </ContentWrapper>
-    </Container>
-  );
+    return (
+        <Container id='project'>
+            <ContentWrapper>
+                <Zoom triggerOnce>
+                    <SectionHeader>
+                        <Title>
+                            Explore <span className="gradient-text">My Latest Creations</span>
+                            <TitleUnderline />
+                        </Title>
+                        <Description>
+                            Here, you'll find a showcase of my latest and most exciting work.
+                            <br /><br />
+                            Explore what I've been building recently and see how I bring ideas to life with code.
+                        </Description>
+                    </SectionHeader>
+                </Zoom>
+                <Fade triggerOnce delay={300}>
+                    <SliderComp />
+                </Fade>
+            </ContentWrapper>
+        </Container>
+    );
 };
 
 export default Projects;
@@ -49,43 +48,17 @@ const Container = styled.section`
     width: 100%;
     padding: 6rem 0;
     position: relative;
-    background: linear-gradient(135deg, rgb(11, 37, 79), rgb(7, 29, 56), rgb(9, 30, 48));
+    background: var(--bg-dark);
     overflow: hidden;
 
-    &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, 
-            rgba(102, 126, 234, 0.1),
-            rgba(118, 75, 162, 0.1),
-            rgba(102, 126, 234, 0.1));
-        background-size: 200% 100%;
-        animation: ${gradientShift} 8s ease infinite;
-        z-index: 0;
-    }
+
 
     @media (max-width: 768px) {
         padding: 4rem 0;
     }
 `;
 
-const BackgroundGradient = styled.div`
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: 
-        radial-gradient(circle at 20% 30%, rgba(96, 235, 228, 0.1) 0%, transparent 30%),
-        radial-gradient(circle at 80% 70%, rgba(58, 123, 213, 0.1) 0%, transparent 30%);
-    pointer-events: none;
-    z-index: 1;
-    animation: ${floatAnimation} 8s ease-in-out infinite alternate;
-`;
+
 
 const ContentWrapper = styled(motion.div)`
     width: 85%;
@@ -116,19 +89,17 @@ const SectionHeader = styled.div`
 const Title = styled.h2`
     font-size: clamp(2rem, 5vw, 3rem);
     font-weight: 700;
-    color: #fff;
+    color: var(--text-primary);
     margin-bottom: 1.5rem;
     position: relative;
     display: inline-block;
     padding-bottom: 1rem;
 
     .gradient-text {
-        background: linear-gradient(90deg, #60ebe4, #3a7bd5, #60ebe4);
+        background: var(--gradient-main);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
-        background-size: 200% 100%;
-        animation: ${gradientShift} 6s ease infinite;
     }
 
     @media (max-width: 768px) {
@@ -144,7 +115,7 @@ const TitleUnderline = styled.div`
     transform: translateX(-50%);
     width: 80px;
     height: 3px;
-    background: linear-gradient(90deg, #60ebe4, #3a7bd5);
+    background: var(--gradient-main);
     border-radius: 3px;
 
     @media (max-width: 768px) {
@@ -156,7 +127,7 @@ const TitleUnderline = styled.div`
 const Description = styled.p`
     max-width: 700px;
     margin: 0 auto;
-    color: rgba(255, 255, 255, 0.85);
+    color: var(--text-secondary);
     line-height: 1.7;
     font-size: clamp(0.95rem, 2vw, 1.1rem);
     font-weight: 400;
@@ -170,7 +141,7 @@ const Description = styled.p`
         transform: translateX(-50%);
         width: 40px;
         height: 2px;
-        background: rgba(255, 255, 255, 0.2);
+        background: var(--glass-border);
     }
 
     @media (max-width: 768px) {
