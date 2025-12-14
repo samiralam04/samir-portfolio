@@ -33,6 +33,7 @@ const Header = () => {
           <NavLink href="#service">Services</NavLink>
           <NavLink href="#project">Projects</NavLink>
           <NavLink href="#coding-progress">Progress</NavLink>
+          <NavLink href="#footer">Contact</NavLink>
 
         </NavLinks>
 
@@ -57,6 +58,7 @@ const Header = () => {
                 <MobileLink href="#service" onClick={() => setToggle(false)}>Services</MobileLink>
                 <MobileLink href="#project" onClick={() => setToggle(false)}>Projects</MobileLink>
                 <MobileLink href="#coding-progress" onClick={() => setToggle(false)}>Progress</MobileLink>
+                <MobileLink href="#footer" onClick={() => setToggle(false)}>Contact</MobileLink>
 
               </MobileLinks>
             </MobileMenu>

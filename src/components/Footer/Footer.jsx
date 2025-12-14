@@ -6,7 +6,7 @@ import {
   MdLocationOn,
   MdSend
 } from "react-icons/md";
-import { FaUser, FaGithub, FaLinkedin, FaInstagram, FaSlack } from "react-icons/fa";
+import { FaUser, FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
 import {
   HiOutlinePhone,
   HiOutlineMailOpen
@@ -26,11 +26,7 @@ const gradient = keyframes`
   100% { background-position: 0% 50%; }
 `;
 
-const float = keyframes`
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
-`;
+
 
 const spin = keyframes`
   to { transform: rotate(360deg); }

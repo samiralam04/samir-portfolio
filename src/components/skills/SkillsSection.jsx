@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
-import styled, { keyframes } from "styled-components";
+import React, { useState, useRef } from "react";
+import styled from "styled-components";
 import {
   FaJava, FaJs, FaPython, FaHtml5, FaCss3Alt, FaPhp,
   FaReact, FaGitAlt, FaDocker, FaNodeJs

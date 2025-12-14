@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { FiGithub, FiCode, FiStar, FiExternalLink, FiUsers, FiGitCommit } from 'react-icons/fi';
+import { FiGithub, FiCode, FiStar, FiUsers, FiGitCommit } from 'react-icons/fi';
 import { SiGithub } from 'react-icons/si';
 
 const Graph = () => {
@@ -54,18 +54,18 @@ const Graph = () => {
       }
     };
 
-   
+
     const fetchGithubContributions = async () => {
-        try {
-            const response = await fetch(`https://github-contributions-api.jasonliang.me/v1/${githubUsername}`);
-            if (!response.ok) throw new Error('GitHub contributions fetch failed');
-            const data = await response.json();
-            // The structure of this API might vary, assuming totalContributions is directly available
-            setGithubContributions(data.totalContributions || 0);
-        } catch (err) {
-            console.error("Failed to fetch GitHub contributions:", err);
-            // Optionally set an error specifically for contributions
-        }
+      try {
+        const response = await fetch(`https://github-contributions-api.jasonliang.me/v1/${githubUsername}`);
+        if (!response.ok) throw new Error('GitHub contributions fetch failed');
+        const data = await response.json();
+        // The structure of this API might vary, assuming totalContributions is directly available
+        setGithubContributions(data.totalContributions || 0);
+      } catch (err) {
+        console.error("Failed to fetch GitHub contributions:", err);
+        // Optionally set an error specifically for contributions
+      }
     };
 
 
@@ -226,7 +226,7 @@ const Graph = () => {
               variants={{ hover: { scale: 1.02 } }} // Subtle hover animation
             />
             <GraphImage
-             src={`https://github-readme-streak-stats-eight.vercel.app?user=${githubUsername}&theme=dark&hide_border=true`}
+              src={`https://github-readme-streak-stats-eight.vercel.app?user=${githubUsername}&theme=dark&hide_border=true`}
 
               alt="GitHub Streak"
               loading="lazy"

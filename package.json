@@ -5,6 +5,7 @@
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.5",
+    "@lottiefiles/dotlottie-react": "^0.17.10",
     "@react-three/drei": "^9.122.0",
     "@react-three/fiber": "^8.18.0",
     "@testing-library/jest-dom": "^5.16.5",
@@ -60,5 +61,4 @@
   "devDependencies": {
     "gh-pages": "^6.1.1"
   }
- 
 }

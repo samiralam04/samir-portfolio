@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import SliderComp from './Slider';
 import { Zoom, Fade } from 'react-awesome-reveal';
 import { motion } from 'framer-motion';
@@ -32,16 +32,7 @@ const Projects = () => {
 export default Projects;
 
 // Animations
-const gradientShift = keyframes`
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-`;
 
-const floatAnimation = keyframes`
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-`;
 
 // Styled Components
 const Container = styled.section`

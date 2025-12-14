@@ -342,11 +342,6 @@ const gradientShift = keyframes`
   100% { background-position: 0% 50%; }
 `;
 
-const glowPulse = keyframes`
-  0%, 100% { opacity: 0.5; transform: scale(1); }
-  50% { opacity: 0.8; transform: scale(1.1); }
-`;
-
 const waveAnimation = keyframes`
   0% { transform: rotate(0deg); }
   10% { transform: rotate(14deg); }
@@ -357,18 +352,6 @@ const waveAnimation = keyframes`
   60% { transform: rotate(0deg); }
   100% { transform: rotate(0deg); }
 `;
-
-const orbitAnimation = keyframes`
-  0% { transform: rotate(0deg) translateX(calc(${props => props.$size} / 2)) rotate(0deg); }
-  100% { transform: rotate(360deg) translateX(calc(${props => props.$size} / 2)) rotate(-360deg); }
-`;
-
-const backgroundAnimation = keyframes`
-  0% { transform: translate(-50%, -50%) rotate(0deg); }
-  100% { transform: translate(-50%, -50%) rotate(360deg); }
-`;
-
-
 
 const iconPulse = keyframes`
   0%, 100% { transform: scale(1); opacity: 1; }
@@ -817,44 +800,4 @@ const ProfileImage = styled(motion.img)`
   @media (max-width: 768px) {
     max-width: 20rem; /* Increased from 18rem */
   }
-`;
-
-const ImageGlow = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 120%;
-  height: 120%;
-  background: var(--gradient-main);
-  border-radius: 50%;
-  opacity: 0.3;
-  filter: blur(40px);
-  z-index: 1;
-  animation: ${glowPulse} 4s ease-in-out infinite;
-`;
-
-const FloatingOrbits = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-`;
-
-const Orbit = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: ${props => props.$size};
-  height: ${props => props.$size};
-  border: 2px dashed ${props => props.$color || 'var(--accent-secondary)'};
-  border-radius: 50%;
-  transform-origin: center;
-  /* Adjust orbitAnimation to correctly apply the size property */
-  animation: ${props => orbitAnimation} 20s linear infinite;
-  animation-delay: ${props => props.$delay || '0s'};
-  opacity: 0.6;
 `;

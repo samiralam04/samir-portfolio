@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { MdDevices, MdWeb, MdStorage, MdCode } from "react-icons/md";
+import { MdWeb, MdStorage, MdCode } from "react-icons/md";
 import { motion } from "framer-motion";
 
 const Services = () => {
