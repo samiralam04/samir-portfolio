@@ -3,13 +3,13 @@ import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import "../Bot/Bot.css";
 
 // --- STATIC HELPERS ---
-const tourSteps = ["#home", "#skills", "#project", "#service", "#coding-progress", "#footer"];
+
 
 const getBrowserVoiceSettings = (emotion) => {
   switch (emotion) {
     case "angry": return { pitch: 0.6, rate: 1.3, volume: 1.0 }; // Deep and fast
     case "happy": return { pitch: 1.3, rate: 1.1, volume: 1.0 }; // High and bubbly
-    case "excited": return { pitch: 1.4, rate: 1.25, volume: 1.0 }; // Higher and faster
+    case "excited": return { pitch: 1.4, rate: 1.12, volume: 1.0 }; // Higher and faster
     case "sad": return { pitch: 0.8, rate: 0.8, volume: 0.7 }; // Low and slow
     default: return { pitch: 1.0, rate: 1.0, volume: 1.0 };
   }
@@ -130,8 +130,7 @@ const Bot = () => {
   const [isFirstVisit, setIsFirstVisit] = useState(true);
   const [userLocation, setUserLocation] = useState(null);
   const [isAudioEnabled, setIsAudioEnabled] = useState(true);
-  const [tourActive, setTourActive] = useState(false);
-  const [tourStep, setTourStep] = useState(0);
+
   const [deferredMessage, setDeferredMessage] = useState(null); // New state for autoplay fallback
 
   const clickCountRef = useRef(0);
@@ -140,6 +139,7 @@ const Bot = () => {
   const botContainerRef = useRef(null);
   const reactionTimeoutRef = useRef(null);
   const clickResetTimeoutRef = useRef(null);
+  const hasInteractedRef = useRef(false); // Track if user has interacted with the page
 
   // --- 3. VOICE LOADING EFFECT (Fixes Random Voices) ---
   useEffect(() => {
@@ -193,13 +193,20 @@ const Bot = () => {
       if (preferredVoice) utterance.voice = preferredVoice;
     }
 
+    // Always try to speak
     window.speechSynthesis.speak(utterance);
+
+    // Backup: If user hasn't interacted causing autoplay block, queue it up
+    if (!hasInteractedRef.current) {
+      setDeferredMessage({ text, emotion });
+    }
   }, [isAudioEnabled, availableVoices]);
 
-  // --- 3.5. AUTOPLAY FALLBACK LISTENER (Moved below speakText) ---
+  // --- 3.5. AUTOPLAY FALLBACK LISTENER ---
   useEffect(() => {
     if (deferredMessage) {
       const handleInteraction = () => {
+        hasInteractedRef.current = true; // Mark as interacted
         // User interacted, now we can play!
         speakText(deferredMessage.text, deferredMessage.emotion);
         setDeferredMessage(null);
@@ -227,26 +234,7 @@ const Bot = () => {
     return "Good evening!";
   };
 
-  const handleTourNext = useCallback(() => {
-    const nextStep = tourStep + 1;
-    if (nextStep < tourSteps.length) {
-      setTourStep(nextStep);
-      const element = document.querySelector(tourSteps[nextStep]);
-      element?.scrollIntoView({ behavior: "smooth", block: "center" });
-    } else {
-      setTourActive(false);
-      setTourStep(0);
-      setBotReaction("happy");
-      speakText("That was the tour! Thanks for watching.", "happy");
-      setTimeout(() => setBotReaction("default"), 3000);
-    }
-  }, [tourStep, speakText]);
 
-  const startTour = useCallback(() => {
-    setTourActive(true);
-    setTourStep(0);
-    document.querySelector(tourSteps[0])?.scrollIntoView({ behavior: "smooth" });
-  }, []);
 
   useEffect(() => {
     const visitedBefore = localStorage.getItem('portfolioVisited');
@@ -259,50 +247,27 @@ const Bot = () => {
       .catch(e => console.log("Location failed", e));
   }, []);
 
-  //  INITIAL GREETING 
-  useEffect(() => {
-    // Small delay to allow location to load if possible, but don't block
-    const timer = setTimeout(() => {
-      const greeting = isFirstVisit
-        ? "Hello! Welcome to my portfolio. I'm here to guide you."
-        : "Welcome back! Good to see you again.";
 
-      setMessage({ text: greeting, visible: true, actions: [] });
-      speakText(greeting, "happy");
-      setBotReaction("happy");
-
-      // Ensure bot is visible initially
-      setIsBotVisible(true);
-      if (!botPosition.top) {
-        // Default position if not yet set by scroll
-        // We trust handleScroll to position it eventually
-      }
-
-      setTimeout(() => setBotReaction("default"), 3000);
-    }, 1000); // 1 second delay for "site load" feel
-
-    return () => clearTimeout(timer);
-  }, [isFirstVisit, speakText, botPosition.top]); // Run once (effectively) or when visitation state settles
 
   useEffect(() => {
     const calculateBotSize = () => {
       const screenWidth = window.innerWidth;
-      if (screenWidth < 480) return { width: 90, height: 90 };
-      if (screenWidth < 768) return { width: 120, height: 120 };
-      if (screenWidth < 820) return { width: 140, height: 140 };
-      if (screenWidth < 853) return { width: 150, height: 150 };
-      if (screenWidth < 912) return { width: 120, height: 120 };
-      if (screenWidth < 1024) return { width: 170, height: 170 };
-      if (screenWidth < 1280) return { width: 175, height: 175 };
-      return { width: 180, height: 180 };
+      if (screenWidth < 480) return { width: 70, height: 70 };
+      if (screenWidth < 768) return { width: 90, height: 90 };
+      if (screenWidth < 820) return { width: 100, height: 100 };
+      if (screenWidth < 853) return { width: 110, height: 110 };
+      if (screenWidth < 912) return { width: 90, height: 90 };
+      if (screenWidth < 1024) return { width: 110, height: 110 };
+      if (screenWidth < 1280) return { width: 115, height: 115 };
+      return { width: 120, height: 120 };
     };
 
     const calculateMessageSize = () => {
       const screenWidth = window.innerWidth;
-      if (screenWidth < 480) return { width: 100, fontSize: 8 };
-      if (screenWidth < 768) return { width: 200, fontSize: 10 };
-      if (screenWidth < 1024) return { width: 260, fontSize: 11 };
-      return { width: 200, fontSize: 12 };
+      if (screenWidth < 480) return { width: 110, fontSize: 9 };
+      if (screenWidth < 768) return { width: 130, fontSize: 10 };
+      if (screenWidth < 1024) return { width: 140, fontSize: 10.5 };
+      return { width: 150, fontSize: 11 };
     };
 
     const handleResize = () => {
@@ -324,41 +289,37 @@ const Bot = () => {
         text: isFirstVisit
           ? ` ${timeGreeting} Welcome to my portfolio ${locationText}!`
           : ` Welcome back! ${timeGreeting}`,
-        actions: tourActive
-          ? [{ label: "Next Step ➡", onClick: handleTourNext }]
-          : [{ label: "Take a Tour ", onClick: startTour }],
+        actions: [],
         styles: getHomeStyles(),
         emotion: "happy"
       },
       "#project": {
-        text: tourActive ? "Here are the projects I've built. Take a look!" : " Check out my latest projects here!",
-        actions: tourActive ? [{ label: "Next ➡", onClick: handleTourNext }] : [],
+        text: " Check out my latest projects here!",
+        actions: [],
         styles: getProjectStyles(),
         emotion: "excited"
       },
       "#skills": {
-        text: " These are my tools of the trade.",
-        actions: tourActive ? [{ label: "Next ➡", onClick: handleTourNext }] : [],
+        text: " These are the technologies I use to build ideas.",
+        actions: [],
         styles: getSkillsStyles(),
         emotion: "default"
       },
       "#service": {
-        text: " Here is how I can help you.",
-        actions: tourActive ? [{ label: "Next ➡", onClick: handleTourNext }] : [],
+        text: " Need a website or an app? Here is how I can help you succeed.",
+        actions: [],
         styles: getServiceStyles(),
         emotion: "default"
       },
       "#coding-progress": {
-        text: "Consistent coding is key!",
-        actions: tourActive ? [{ label: "Next ➡", onClick: handleTourNext }] : [],
+        text: "Consistency is my power. Check out my GitHub activity!",
+        actions: [],
         styles: getCodingProgressStyles(),
         emotion: "default"
       },
       "#footer": {
-        text: tourActive ? "That's the tour! Feel free to contact me." : " Want to collaborate? Get in touch!",
-        actions: tourActive
-          ? [{ label: "Finish Tour 🎉", onClick: handleTourNext }]
-          : [{ label: "Email Me 📧", onClick: () => window.location.href = "mailto:your@email.com" }],
+        text: " Want to collaborate? Get in touch!",
+        actions: [{ label: "Email Me 📧", onClick: () => window.location.href = "mailto:samiralam7005@gmail.com" }],
         styles: getFooterStyles(),
         emotion: "happy"
       }
@@ -419,7 +380,7 @@ const Bot = () => {
       window.removeEventListener("scroll", handleScroll);
       clearTimeout(messageTimeoutRef.current);
     };
-  }, [message.text, message.visible, botPosition, isMinimized, tourActive, tourStep, isAudioEnabled, userLocation, botSize, handleTourNext, startTour, speakText, isFirstVisit]);
+  }, [message.text, message.visible, botPosition, isMinimized, isAudioEnabled, userLocation, botSize, speakText, isFirstVisit]);
 
   // --- INTERACTIONS ---
   const handleBotClick = () => {
@@ -433,7 +394,7 @@ const Bot = () => {
 
     if (clickCountRef.current > 4) {
       isPokingRef.current = true;
-      const angryText = "Hey! Stop poking me! ";
+      const angryText = "Hey, that's tickling! Stop poking me! ";
       setMessage({ text: angryText, visible: true, actions: [] });
       speakText(angryText, "angry");
       setBotReaction('default');

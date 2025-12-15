@@ -76,7 +76,8 @@ const Graph = () => {
         const data = await response.json();
         setLeetcodeData(data);
       } catch (err) {
-        setError(err.message);
+        console.warn("LeetCode fetch failed:", err);
+        setLeetcodeData(null); // Ensure data is null on error
       } finally {
         setLoading(false);
       }
