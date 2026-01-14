@@ -43,11 +43,21 @@ const data = [
     disc: "A minimalist To-Do List built with HTML, CSS, and JavaScript, facilitating efficient task management with intuitive design and dynamic functionality.",
     href: " https://samiralam04.github.io/To-Do-List/",
   },
+
   {
     img: "https://www.logoai.com/uploads/output/2022/10/17/9135d68826af2d0802c03554d508446e.jpg",
     disc: " A React.js and Firebase-based chat app with real-time messaging, user photo uploads, and blocking features. Designed for desktop use, it enhances security with .env-managed API keys and offers a streamlined user experience. ",
     href: "https://samiralam04.github.io/Real-Time-chatApp/",
+  },  
+  {
+    img: "https://imgs.search.brave.com/rCD8OBatef1_iNUlkBv97AKcniF5x06ZAA2oIaKG9ds/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/YmlvaW50ZXJhY3Rp/dmUub3JnL3NpdGVz/L2RlZmF1bHQvZmls/ZXMvc3R5bGVzL3Nx/dWFyZV90aHVtYm5h/aWwvcHVibGljL21l/ZGlhL2ltYWdlLzIw/MjEtMDUvRGF0YSUy/MEV4cGxvcmVyJTIw/dGh1bWJuYWlsLmpw/Zz9pdG9rPUlBS2xY/b0Jo",
+    disc: "Product Data Explorer is a full-stack app that scrapes and organizes book data from World of Books using Playwright. It features background job processing, a PostgreSQL database, and a modern Next.js interface to explore clean, deduplicated product data. ",
+    href: "https://github.com/samiralam04/Data-explorer",
   },
+
+
+
+
 ];
 
 const slideIn = keyframes`
