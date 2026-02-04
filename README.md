@@ -1,4 +1,4 @@
-# ⚡ Samir Alam | Cyber-Minimalist Portfolio
+# ⚡ Samir Alam Portfolio
 
 <img src="Banner.png" alt="banner" width="100%"/>
 
