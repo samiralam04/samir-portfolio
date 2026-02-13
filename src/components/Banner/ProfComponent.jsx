@@ -213,7 +213,7 @@ function ProfComponent() {
 
               <ActionSection>
                 <ResumeButton
-                  href="https://drive.google.com/file/d/1fgQlYBq4doeB4ZmEtjtq4rpAnjZInBx4/view?usp=drive_link"
+                  href="https://drive.google.com/file/d/1kCZps9pehFwMVomfj9PPg4KBGx4t9djF/view?usp=drive_link"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{
