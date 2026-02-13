@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none">
+  <defs>
+    <style>
+      .icon { stroke: #00ff9d; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+  </defs>
+  
+  <path d="M12 8 L2 20 L12 32" class="icon"/> <!-- < -->
+  <path d="M28 8 L38 20 L28 32" class="icon"/> <!-- > -->
+  <path d="M18 34 L22 6" class="icon"/>   <!-- / -->
+</svg>
