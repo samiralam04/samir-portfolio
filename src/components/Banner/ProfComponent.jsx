@@ -5,7 +5,7 @@ import { HiMail } from "react-icons/hi";
 import { FiAward, } from "react-icons/fi";
 import { Slide, Zoom, Fade } from "react-awesome-reveal";
 import { motion } from "framer-motion";
-import profilePic from './pro2.png';
+import profilePic from './id card.png';
 import profilePicMobile from './profile.png';
 
 import { TbLayoutDashboard, TbTerminal2 } from 'react-icons/tb';
