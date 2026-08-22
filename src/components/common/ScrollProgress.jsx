@@ -1,3 +1,8 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// Copyright © 2026 Samir Alam. All Rights Reserved.
+// Scroll Progress Indicator Component
+// ─────────────────────────────────────────────────────────────────────────────
+
 import React from 'react';
 import styled from 'styled-components';
 import { motion, useScroll, useSpring } from 'framer-motion';

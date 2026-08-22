@@ -1,3 +1,8 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// Copyright © 2026 Samir Alam. All Rights Reserved.
+// Hero / Profile Banner Component
+// ─────────────────────────────────────────────────────────────────────────────
+
 import React from "react";
 import styled, { keyframes } from "styled-components";
 import { FaGithub, FaLinkedin, FaFileDownload } from "react-icons/fa";

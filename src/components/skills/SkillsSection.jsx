@@ -1,3 +1,8 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// Copyright © 2026 Samir Alam. All Rights Reserved.
+// Technical Skills Section Component
+// ─────────────────────────────────────────────────────────────────────────────
+
 import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import {

@@ -1,0 +1,54 @@
+PROPRIETARY LICENSE & COPYRIGHT NOTICE
+
+Copyright (c) 2026 Samir Alam. All Rights Reserved.
+
+Repository: https://github.com/samiralam04/samir-portfolio
+Canonical Portfolio: https://samiralam04.github.io/samir-portfolio/
+
+================================================================================
+1. OWNERSHIP & SCOPE
+================================================================================
+The source code, user interface and user experience (UI/UX) design, visual layout,
+styling, written text, project documentation, project descriptions, interactive 3D
+implementations, conversational AI configurations, custom graphics, and original assets
+contained within this repository and portfolio are the exclusive intellectual property
+of Samir Alam ("Author") unless explicitly attributed otherwise.
+
+================================================================================
+2. PERMITTED USAGE
+================================================================================
+- Viewing and interacting with the publicly deployed portfolio website for personal,
+  evaluative, or recruitment purposes.
+- Viewing the publicly accessible source code on GitHub solely for educational and
+  reference review purposes.
+
+================================================================================
+3. PROHIBITED USAGE (WITHOUT PRIOR WRITTEN PERMISSION)
+================================================================================
+Without prior explicit written consent from the Author, you may NOT:
+- Copy, reproduce, clone, republish, distribute, sublicense, sell, or host
+  substantial portions of this portfolio, its UI/UX, or its codebase.
+- Re-brand, modify, or present this portfolio, its design system, or its contents
+  as your own work or as the portfolio of another individual or entity.
+- Extract or reuse original project descriptions, biographical text, system prompts,
+  or custom branding assets for use in other projects or commercial products.
+- Use automated scrapers, data-mining scripts, or bulk-cloning mechanisms to harvest
+  proprietary content from this repository or website.
+
+================================================================================
+4. THIRD-PARTY COMPONENTS & LIBRARIES
+================================================================================
+This project incorporates open-source software libraries, frameworks, icons, and tools
+(including but not limited to React, Framer Motion, Three.js, Styled Components,
+React Icons, React Slick, and Web3Forms). All third-party dependencies remain the
+property of their respective copyright holders and are governed by their respective
+licenses (e.g., MIT, Apache 2.0, BSD). Nothing in this document shall be construed
+as claiming ownership over such third-party open-source libraries.
+
+================================================================================
+5. INQUIRIES & PERMISSIONS
+================================================================================
+To request permission for code usage, licensing queries, or attribution inquiries:
+- Email: samiralam7005@gmail.com
+- LinkedIn: https://www.linkedin.com/in/samir-alam-3756582b6
+- GitHub: https://github.com/samiralam04

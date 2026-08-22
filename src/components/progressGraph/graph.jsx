@@ -1,3 +1,8 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// Copyright © 2026 Samir Alam. All Rights Reserved.
+// Live Coding Stats Component (GitHub & LeetCode Integration)
+// ─────────────────────────────────────────────────────────────────────────────
+
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';

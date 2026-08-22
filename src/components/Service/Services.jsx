@@ -1,3 +1,8 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// Copyright © 2026 Samir Alam. All Rights Reserved.
+// Services & Expertise Offerings Component
+// ─────────────────────────────────────────────────────────────────────────────
+
 import React from "react";
 import styled from "styled-components";
 import { MdWeb, MdStorage, MdCode } from "react-icons/md";

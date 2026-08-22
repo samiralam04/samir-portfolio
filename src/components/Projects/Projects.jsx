@@ -1,3 +1,8 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// Copyright © 2026 Samir Alam. All Rights Reserved.
+// Projects Section Wrapper Component
+// ─────────────────────────────────────────────────────────────────────────────
+
 import React from 'react';
 import styled from 'styled-components';
 import SliderComp from './Slider';

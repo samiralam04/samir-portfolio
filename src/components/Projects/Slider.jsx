@@ -1,3 +1,8 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// Copyright © 2026 Samir Alam. All Rights Reserved.
+// Projects Carousel Slider Component
+// ─────────────────────────────────────────────────────────────────────────────
+
 import React, { useRef } from "react";
 import Slider from "react-slick";
 import Project from "./Project";
@@ -6,12 +11,14 @@ import styled, { keyframes } from "styled-components";
 
 const data = [
   {
+    name: "RollWise",
     img: "https://img.freepik.com/free-vector/confirmed-attendance-concept-illustration_114360-7745.jpg?t=st=1743274092~exp=1743277692~hmac=1bca00d61734dbdf22f5b044eb8385231a66c9b5a0e64530941ae367e7f18907&w=1380",
     disc: "Student Attendance Management System using Java, Servlets, and PostgreSQL to streamline attendance tracking with automated notifications and role-based access.",
     href: "https://github.com/samiralam04/RollWise",
   },
 
   {
+    name: "AI Resume Chatbot",
     img: "https://imgs.search.brave.com/C1LOoksPvSCZJMNy3aS9861IY8wF72xZzIPRaGSxzCo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvdGh1/bWJuYWlscy8wMDcv/Nzg2LzY4MC9zbWFs/bC9mbGF0LWRvY3Vt/ZW50LXRhbGstb3It/Y2hhdC1sb2dvLWRl/c2lnbi10ZW1wbGF0/ZS12ZWN0b3IuanBn",
     disc: " A full-stack AI-powered application that parses resumes (PDFs) and allows users to interactively chat about the candidate's experience using a modern LLM.",
     href: "https://github.com/samiralam04/ai-resume-chatbot",
@@ -19,12 +26,14 @@ const data = [
 
 
   {
+    name: "Story Board",
     img: "https://mms.businesswire.com/media/20201216005187/en/846780/23/Storyboard_Official_Logo_%281%29.jpg",
     disc: "A versatile platform allowing users to write, edit, and manage their stories. Features include uploading thumbnail images, reading and deleting stories, and downloading them as PDFs.",
     href: "https://samiralam04.github.io/Story-Board/",
   },
 
   {
+    name: "Tiny URL",
     img: "https://mir-s3-cdn-cf.behance.net/projects/404/8eec89176281219.Y3JvcCw4MDgsNjMyLDAsMA.png",
     disc: " Tiny URL Shortener, A Java servlet-based application that shortens long URLs. It includes user registration, login, and session management, with all data stored securely in a PostgreSQL database.",
     href: "https://github.com/samiralam04/TinyUrl",
@@ -33,11 +42,13 @@ const data = [
 
 
   {
+    name: "Real-Time Chat App",
     img: "https://www.logoai.com/uploads/output/2022/10/17/9135d68826af2d0802c03554d508446e.jpg",
     disc: " A React.js and Firebase-based chat app with real-time messaging, user photo uploads, and blocking features. Designed for desktop use, it enhances security with .env-managed API keys and offers a streamlined user experience. ",
     href: "https://samiralam04.github.io/Real-Time-chatApp/",
   },
   {
+    name: "Product Data Explorer",
     img: "https://imgs.search.brave.com/rCD8OBatef1_iNUlkBv97AKcniF5x06ZAA2oIaKG9ds/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/YmlvaW50ZXJhY3Rp/dmUub3JnL3NpdGVz/L2RlZmF1bHQvZmls/ZXMvc3R5bGVzL3Nx/dWFyZV90aHVtYm5h/aWwvcHVibGljL21l/ZGlhL2ltYWdlLzIw/MjEtMDUvRGF0YSUy/MEV4cGxvcmVyJTIw/dGh1bWJuYWlsLmpw/Zz9pdG9rPUlBS2xY/b0Jo",
     disc: "Product Data Explorer is a full-stack app that scrapes and organizes book data from World of Books using Playwright. It features background job processing, a PostgreSQL database, and a modern Next.js interface to explore clean, deduplicated product data. ",
     href: "https://github.com/samiralam04/Data-explorer",

@@ -1,3 +1,8 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// Copyright © 2026 Samir Alam. All Rights Reserved.
+// Footer Component & Contact Form
+// ─────────────────────────────────────────────────────────────────────────────
+
 import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import {
@@ -50,7 +55,7 @@ const LoadingSpinner = styled.div`
   margin-bottom: 1rem;
 `;
 
-const Footer = () => {
+const Footer = ({ onOpenLegal }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -323,7 +328,15 @@ const Footer = () => {
       <CopyrightSection>
         <CopyrightText>
           <LogoImage src={dp} alt="Samir Alam" />
-          © {new Date().getFullYear()} Samir Alam. All Rights Reserved.
+          <span>© 2026 Samir Alam. All Rights Reserved.</span>
+          <Separator>•</Separator>
+          <LegalButton
+            type="button"
+            onClick={onOpenLegal}
+            aria-label="View Intellectual Property and Copyright Notice"
+          >
+            IP & Copyright Notice
+          </LegalButton>
         </CopyrightText>
       </CopyrightSection>
     </FooterContainer>
@@ -696,28 +709,58 @@ const ModalButton = styled(motion.button)`
 `;
 
 const CopyrightSection = styled.div`
-  background: rgba(0, 0, 0, 0.2);
-  padding: 1.5rem 0;
+  background: rgba(0, 0, 0, 0.35);
+  padding: 1.75rem 0;
   text-align: center;
   margin-top: 3rem;
   position: relative;
   z-index: 2;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
 `;
 
-const CopyrightText = styled.p`
+const CopyrightText = styled.div`
   color: var(--text-muted);
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.6rem;
   flex-wrap: wrap;
+  line-height: 1.5;
+`;
+
+const Separator = styled.span`
+  color: rgba(255, 255, 255, 0.2);
+  @media (max-width: 540px) {
+    display: none;
+  }
+`;
+
+const LegalButton = styled.button`
+  background: transparent;
+  border: none;
+  color: var(--accent-primary);
+  font-size: 0.85rem;
+  font-family: 'Space Grotesk', sans-serif;
+  cursor: pointer;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  opacity: 0.85;
+
+  &:hover {
+    opacity: 1;
+    color: #fff;
+    background: rgba(0, 255, 157, 0.1);
+  }
 `;
 
 const LogoImage = styled.img`
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   object-fit: cover;
+  border: 1px solid rgba(0, 255, 157, 0.3);
 `;

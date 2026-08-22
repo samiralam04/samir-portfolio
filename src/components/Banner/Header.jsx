@@ -1,20 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import { motion, AnimatePresence } from 'framer-motion';
+// ─────────────────────────────────────────────────────────────────────────────
+// Copyright © 2026 Samir Alam. All Rights Reserved.
+// Navigation Header Component
+// ─────────────────────────────────────────────────────────────────────────────
+
+import React, { useState, useEffect } from "react";
+import styled, { keyframes } from "styled-components";
+import { motion, AnimatePresence } from "framer-motion";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { CgCodeSlash } from "react-icons/cg";
+import { useAI } from "../AI/AIContext";
 
 const Header = () => {
   const [toggle, setToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { openAI } = useAI();
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -34,7 +41,15 @@ const Header = () => {
           <NavLink href="#project">Projects</NavLink>
           <NavLink href="#coding-progress">Progress</NavLink>
           <NavLink href="#footer">Contact</NavLink>
-
+          <AskAINavButton
+            onClick={openAI}
+            aria-label="Open ZoRo AI assistant"
+            whileHover={{ scale: 1.04, y: -1 }}
+            whileTap={{ scale: 0.96 }}
+          >
+            <span className="sparkle">✦</span>
+            <span>Ask ZoRo</span>
+          </AskAINavButton>
         </NavLinks>
 
         <MobileMenuIcon onClick={() => setToggle(!toggle)}>
@@ -44,22 +59,45 @@ const Header = () => {
         <AnimatePresence>
           {toggle && (
             <MobileMenu
-              initial={{ x: '100%' }}
+              initial={{ x: "100%" }}
               animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'tween', duration: 0.3 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "tween", duration: 0.3 }}
             >
               <CloseButton onClick={() => setToggle(false)}>
                 <FaTimes />
               </CloseButton>
               <MobileLinks>
-                <MobileLink href="#home" onClick={() => setToggle(false)}>Home</MobileLink>
-                <MobileLink href="#skills" onClick={() => setToggle(false)}>Skills</MobileLink>
-                <MobileLink href="#service" onClick={() => setToggle(false)}>Services</MobileLink>
-                <MobileLink href="#project" onClick={() => setToggle(false)}>Projects</MobileLink>
-                <MobileLink href="#coding-progress" onClick={() => setToggle(false)}>Progress</MobileLink>
-                <MobileLink href="#footer" onClick={() => setToggle(false)}>Contact</MobileLink>
-
+                <MobileLink href="#home" onClick={() => setToggle(false)}>
+                  Home
+                </MobileLink>
+                <MobileLink href="#skills" onClick={() => setToggle(false)}>
+                  Skills
+                </MobileLink>
+                <MobileLink href="#service" onClick={() => setToggle(false)}>
+                  Services
+                </MobileLink>
+                <MobileLink href="#project" onClick={() => setToggle(false)}>
+                  Projects
+                </MobileLink>
+                <MobileLink
+                  href="#coding-progress"
+                  onClick={() => setToggle(false)}
+                >
+                  Progress
+                </MobileLink>
+                <MobileLink href="#footer" onClick={() => setToggle(false)}>
+                  Contact
+                </MobileLink>
+                <AskAIMobileButton
+                  onClick={() => {
+                    setToggle(false);
+                    openAI();
+                  }}
+                  aria-label="Open ZoRo AI assistant"
+                >
+                  ✦ Ask ZoRo
+                </AskAIMobileButton>
               </MobileLinks>
             </MobileMenu>
           )}
@@ -82,9 +120,11 @@ const Nav = styled.nav`
   align-items: center;
   z-index: 1000;
   transition: all 0.3s ease;
-  background: ${props => props.$scrolled ? 'rgba(10, 10, 10, 0.85)' : 'transparent'};
-  backdrop-filter: ${props => props.$scrolled ? 'blur(12px)' : 'none'};
-  border-bottom: ${props => props.$scrolled ? '1px solid rgba(255, 255, 255, 0.05)' : 'none'};
+  background: ${(props) =>
+    props.$scrolled ? "rgba(10, 10, 10, 0.85)" : "transparent"};
+  backdrop-filter: ${(props) => (props.$scrolled ? "blur(12px)" : "none")};
+  border-bottom: ${(props) =>
+    props.$scrolled ? "1px solid rgba(255, 255, 255, 0.05)" : "none"};
 `;
 
 const NavContainer = styled.div`
@@ -103,7 +143,7 @@ const Logo = styled.a`
   font-weight: 700;
   color: var(--text-primary);
   text-decoration: none;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: "Space Grotesk", sans-serif;
 `;
 
 const LogoIcon = styled.span`
@@ -147,7 +187,7 @@ const NavLink = styled.a`
   }
 
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     width: 0;
     height: 2px;
@@ -160,7 +200,7 @@ const NavLink = styled.a`
   &:hover::after {
     width: 100%;
   }
-  
+
   &.cta::after {
     display: none;
   }
@@ -212,10 +252,98 @@ const MobileLink = styled.a`
   color: var(--text-primary);
   text-decoration: none;
   font-weight: 600;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   transition: color 0.3s ease;
 
   &:hover {
     color: var(--accent-primary);
+  }
+`;
+
+const navButtonGlow = keyframes`
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(0, 255, 157, 0.15), inset 0 0 8px rgba(0, 255, 157, 0.05);
+    border-color: rgba(0, 255, 157, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 18px rgba(0, 255, 157, 0.35), inset 0 0 12px rgba(0, 255, 157, 0.1);
+    border-color: rgba(0, 255, 157, 0.7);
+  }
+`;
+
+const sparkleRotate = keyframes`
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.2) rotate(15deg);
+  }
+`;
+
+const AskAINavButton = styled(motion.button)`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 1.15rem;
+  border: 1px solid rgba(0, 255, 157, 0.45);
+  border-radius: 9999px;
+  background: rgba(0, 255, 157, 0.06);
+  color: var(--accent-primary);
+  font-size: 0.88rem;
+  font-weight: 600;
+  font-family: "Space Grotesk", sans-serif;
+  cursor: pointer;
+  letter-spacing: 0.03em;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+  animation: ${navButtonGlow} 3.5s infinite ease-in-out;
+
+  .sparkle {
+    font-size: 0.95rem;
+    display: inline-block;
+    animation: ${sparkleRotate} 3s ease-in-out infinite;
+  }
+
+  &:hover {
+    background: rgba(0, 255, 157, 0.14);
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 20px rgba(0, 255, 157, 0.4);
+    color: #ffffff;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+  }
+`;
+
+const AskAIMobileButton = styled.button`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  font-family: "Space Grotesk", sans-serif;
+  color: var(--accent-primary);
+  background: rgba(0, 255, 157, 0.08);
+  border: 1.5px solid rgba(0, 255, 157, 0.45);
+  border-radius: 9999px;
+  padding: 0.75rem 1.6rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  letter-spacing: 0.03em;
+  animation: ${navButtonGlow} 3.5s infinite ease-in-out;
+
+  &:hover {
+    background: rgba(0, 255, 157, 0.18);
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 20px rgba(0, 255, 157, 0.4);
+    color: #ffffff;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
   }
 `;
