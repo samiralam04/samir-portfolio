@@ -9,20 +9,14 @@ import {
   MdAlternateEmail,
   MdSchool,
   MdLocationOn,
-  MdSend
+  MdSend,
 } from "react-icons/md";
 import { FaUser, FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
-import {
-  HiOutlinePhone,
-  HiOutlineMailOpen
-} from "react-icons/hi";
-import {
-  AiOutlineArrowUp,
-  AiOutlineMessage
-} from "react-icons/ai";
+import { HiOutlinePhone, HiOutlineMailOpen } from "react-icons/hi";
+import { AiOutlineArrowUp, AiOutlineMessage } from "react-icons/ai";
 import { Slide, Zoom, Fade } from "react-awesome-reveal";
 import { motion, AnimatePresence } from "framer-motion";
-import dp from './profile.png';
+import dp from "./profile.png";
 
 // Animations
 const gradient = keyframes`
@@ -30,8 +24,6 @@ const gradient = keyframes`
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 `;
-
-
 
 const spin = keyframes`
   to { transform: rotate(360deg); }
@@ -57,9 +49,9 @@ const LoadingSpinner = styled.div`
 
 const Footer = ({ onOpenLegal }) => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
+    name: "",
+    email: "",
+    message: "",
   });
 
   const [showPopup, setShowPopup] = useState(false);
@@ -76,7 +68,7 @@ const Footer = ({ onOpenLegal }) => {
     const { name, value } = event.target;
     setFormData({
       ...formData,
-      [name]: value
+      [name]: value,
     });
   };
 
@@ -85,7 +77,10 @@ const Footer = ({ onOpenLegal }) => {
     const apiKey = process.env.REACT_APP_API_KEY || "YOUR_ACCESS_KEY_HERE"; // Fallback or handle env
     const formDataObj = new FormData(event.target);
     formDataObj.append("access_key", apiKey);
-    formDataObj.append("subject", `${formDataObj.get('name')} sent you a message from your portfolio!`);
+    formDataObj.append(
+      "subject",
+      `${formDataObj.get("name")} sent you a message from your portfolio!`,
+    );
     const json = JSON.stringify(Object.fromEntries(formDataObj));
 
     setLoading(true);
@@ -94,13 +89,13 @@ const Footer = ({ onOpenLegal }) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Accept: "application/json"
+          Accept: "application/json",
         },
-        body: json
+        body: json,
       }).then((res) => res.json());
 
       if (res.success) {
-        setFormData({ name: '', email: '', message: '' });
+        setFormData({ name: "", email: "", message: "" });
         setShowPopup(true);
       }
     } catch (error) {
@@ -124,37 +119,100 @@ const Footer = ({ onOpenLegal }) => {
           <InfoBlock>
             <Slide direction="left" triggerOnce>
               <InfoTitle>
-                <InfoIcon><MdSchool /></InfoIcon>
+                <InfoIcon>
+                  <MdSchool />
+                </InfoIcon>
                 Education
               </InfoTitle>
-              <InfoText>Bachelor of Computer Applications (BCA)</InfoText>
+              <InfoText>
+                <span
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.6rem",
+                  }}
+                >
+                  <span
+                    style={{
+                      width: "6px",
+                      height: "6px",
+                      borderRadius: "50%",
+                      background: "var(--accent-primary)",
+                      flexShrink: 0,
+                      marginTop: "2px",
+                    }}
+                  />
+                  MCA – Generative AI · SRM IST
+                </span>
+              </InfoText>
+              <div
+                style={{
+                  marginLeft: "1.7rem",
+                  paddingLeft: "2px",
+                  borderLeft: "1.5px solid rgba(96,235,228,0.25)",
+                  height: "1rem",
+                }}
+              />
+              <InfoText>
+                <span
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.6rem",
+                  }}
+                >
+                  <span
+                    style={{
+                      width: "6px",
+                      height: "6px",
+                      borderRadius: "50%",
+                      background: "rgba(255,255,255,0.25)",
+                      flexShrink: 0,
+                      marginTop: "2px",
+                    }}
+                  />
+                  BCA · Hindustan Institute of Technology & Science
+                </span>
+              </InfoText>
             </Slide>
           </InfoBlock>
 
           <ContactBlock>
             <Slide direction="left" triggerOnce>
               <InfoTitle>
-                <InfoIcon><HiOutlinePhone /></InfoIcon>
+                <InfoIcon>
+                  <HiOutlinePhone />
+                </InfoIcon>
                 Contact me
               </InfoTitle>
             </Slide>
             <ContactItem>
-              <ContactIcon><HiOutlinePhone /></ContactIcon>
+              <ContactIcon>
+                <HiOutlinePhone />
+              </ContactIcon>
               <Slide direction="left" triggerOnce>
-                <ContactLink href="tel:+917604986674">+91 76049 86674</ContactLink>
+                <ContactLink href="tel:+917604986674">
+                  +91 76049 86674
+                </ContactLink>
               </Slide>
             </ContactItem>
             <ContactItem>
               <Slide direction="left" triggerOnce>
-                <ContactIcon><HiOutlineMailOpen /></ContactIcon>
+                <ContactIcon>
+                  <HiOutlineMailOpen />
+                </ContactIcon>
               </Slide>
               <Slide triggerOnce>
-                <ContactLink href="mailto:samiralam7005@gmail.com">samiralam7005@gmail.com</ContactLink>
+                <ContactLink href="mailto:samiralam7005@gmail.com">
+                  samiralam7005@gmail.com
+                </ContactLink>
               </Slide>
             </ContactItem>
             <ContactItem>
               <Slide direction="left" triggerOnce>
-                <ContactIcon><MdLocationOn /></ContactIcon>
+                <ContactIcon>
+                  <MdLocationOn />
+                </ContactIcon>
               </Slide>
               <Slide triggerOnce>
                 <ContactText>India</ContactText>
@@ -165,7 +223,9 @@ const Footer = ({ onOpenLegal }) => {
           <SocialBlock>
             <Slide direction="left" triggerOnce>
               <InfoTitle>
-                <InfoIcon><FaUser /></InfoIcon>
+                <InfoIcon>
+                  <FaUser />
+                </InfoIcon>
                 Social Profiles
               </InfoTitle>
             </Slide>
@@ -232,7 +292,9 @@ const Footer = ({ onOpenLegal }) => {
               <FormSubtitle>I'll respond as soon as possible</FormSubtitle>
 
               <InputGroup>
-                <InputIcon><FaUser /></InputIcon>
+                <InputIcon>
+                  <FaUser />
+                </InputIcon>
                 <InputField
                   type="text"
                   placeholder="Enter Your Name"
@@ -244,7 +306,9 @@ const Footer = ({ onOpenLegal }) => {
               </InputGroup>
 
               <InputGroup>
-                <InputIcon><MdAlternateEmail /></InputIcon>
+                <InputIcon>
+                  <MdAlternateEmail />
+                </InputIcon>
                 <InputField
                   type="email"
                   placeholder="example@domain.com"
@@ -256,7 +320,9 @@ const Footer = ({ onOpenLegal }) => {
               </InputGroup>
 
               <InputGroup className="message">
-                <InputIcon className="messageIcon"><AiOutlineMessage /></InputIcon>
+                <InputIcon className="messageIcon">
+                  <AiOutlineMessage />
+                </InputIcon>
                 <TextArea
                   name="message"
                   placeholder="Your message..."
@@ -307,11 +373,13 @@ const Footer = ({ onOpenLegal }) => {
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
-              transition={{ type: 'spring', stiffness: 300 }}
+              transition={{ type: "spring", stiffness: 300 }}
             >
               <SuccessIcon>✓</SuccessIcon>
               <ModalTitle>Message Sent!</ModalTitle>
-              <ModalText>Thank you for reaching out. I'll get back to you soon.</ModalText>
+              <ModalText>
+                Thank you for reaching out. I'll get back to you soon.
+              </ModalText>
               <ModalButton
                 onClick={() => setShowPopup(false)}
                 whileHover={{ scale: 1.05 }}
@@ -353,8 +421,6 @@ const FooterContainer = styled.footer`
   overflow: hidden;
 `;
 
-
-
 const ContentWrapper = styled.div`
   width: 85%;
   max-width: 1440px;
@@ -379,7 +445,9 @@ const ProfileSection = styled.div`
   flex: 1;
   padding: 2rem 0;
   max-width: 500px;
-  @media (max-width: 768px) { max-width: 100%; }
+  @media (max-width: 768px) {
+    max-width: 100%;
+  }
 `;
 
 const SectionTitle = styled.h1`
@@ -388,7 +456,9 @@ const SectionTitle = styled.h1`
   margin-bottom: 2rem;
   line-height: 1.2;
   color: var(--text-primary);
-  @media (max-width: 768px) { font-size: 2rem; }
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
 `;
 
 const GradientText = styled.span`
@@ -400,7 +470,9 @@ const GradientText = styled.span`
   animation: ${gradient} 6s ease infinite;
 `;
 
-const InfoBlock = styled.div` padding: 1rem 0; `;
+const InfoBlock = styled.div`
+  padding: 1rem 0;
+`;
 
 const InfoTitle = styled.h2`
   font-size: 1.3rem;
@@ -424,7 +496,9 @@ const InfoText = styled.p`
   margin-left: 1.7rem;
 `;
 
-const ContactBlock = styled.div` margin: 2rem 0; `;
+const ContactBlock = styled.div`
+  margin: 2rem 0;
+`;
 
 const ContactItem = styled.div`
   display: flex;
@@ -433,23 +507,29 @@ const ContactItem = styled.div`
   margin: 1rem 0;
 `;
 
-const ContactIcon = styled(InfoIcon)` min-width: 20px; `;
+const ContactIcon = styled(InfoIcon)`
+  min-width: 20px;
+`;
 
 const ContactLink = styled.a`
   color: var(--text-secondary);
   text-decoration: none;
   transition: all 0.3s ease;
   word-break: break-all;
-  
+
   &:hover {
     color: var(--accent-primary);
     text-decoration: underline;
   }
 `;
 
-const ContactText = styled.span` color: var(--text-secondary); `;
+const ContactText = styled.span`
+  color: var(--text-secondary);
+`;
 
-const SocialBlock = styled.div` margin: 2rem 0; `;
+const SocialBlock = styled.div`
+  margin: 2rem 0;
+`;
 
 const SocialIcons = styled.div`
   display: flex;
@@ -470,7 +550,7 @@ const SocialIcon = styled(motion.div)`
   transition: all 0.3s ease;
   cursor: pointer;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  
+
   &:hover {
     background: var(--gradient-main);
     transform: translateY(-3px);
@@ -505,7 +585,7 @@ const ScrollUpButton = styled(motion.button)`
   box-shadow: 0 5px 15px rgba(96, 235, 228, 0.3);
   border: none;
   outline: none;
-  
+
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(96, 235, 228, 0.4);
@@ -524,7 +604,9 @@ const FormSection = styled.div`
   flex: 1;
   padding: 2rem 0;
   max-width: 500px;
-  @media (max-width: 768px) { max-width: 100%; }
+  @media (max-width: 768px) {
+    max-width: 100%;
+  }
 `;
 
 const ContactForm = styled.form`
@@ -570,7 +652,9 @@ const InputGroup = styled.div`
     background: rgba(0, 0, 0, 0.4);
   }
 
-  &.message { height: 150px; }
+  &.message {
+    height: 150px;
+  }
 `;
 
 const InputIcon = styled.span`
@@ -584,12 +668,12 @@ const InputIcon = styled.span`
   justify-content: center;
   color: var(--text-muted);
   background: rgba(255, 255, 255, 0.03);
-  
+
   &.messageIcon {
     align-items: flex-start;
     padding-top: 1rem;
   }
-  
+
   ${InputGroup}:focus-within & {
     color: var(--accent-primary);
   }
@@ -605,7 +689,9 @@ const InputField = styled.input`
   outline: none;
   font-family: inherit;
 
-  &::placeholder { color: rgba(255, 255, 255, 0.3); }
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+  }
 `;
 
 const TextArea = styled.textarea`
@@ -620,7 +706,9 @@ const TextArea = styled.textarea`
   resize: none;
   font-family: inherit;
 
-  &::placeholder { color: rgba(255, 255, 255, 0.3); }
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+  }
 `;
 
 const SubmitButton = styled(motion.button)`
@@ -639,7 +727,7 @@ const SubmitButton = styled(motion.button)`
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  
+
   &:hover {
     box-shadow: 0 8px 25px rgba(96, 235, 228, 0.5);
   }
@@ -741,7 +829,7 @@ const LegalButton = styled.button`
   border: none;
   color: var(--accent-primary);
   font-size: 0.85rem;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   cursor: pointer;
   padding: 0.2rem 0.5rem;
   border-radius: 4px;
@@ -763,4 +851,5 @@ const LogoImage = styled.img`
   border-radius: 50%;
   object-fit: cover;
   border: 1px solid rgba(0, 255, 157, 0.3);
+  animation: ${pulse} 1.5s infinite;
 `;

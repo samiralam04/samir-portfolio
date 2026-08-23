@@ -227,16 +227,17 @@ const KNOWLEDGE = {
   },
 
   education: {
-    degree: "Bachelor of Computer Applications (BCA)",
-    institution: "Hindustan Institute of Technology and Science",
-    current: "Currently pursuing MCA (Master of Computer Applications)",
+    degree: "Master of Computer Applications (MCA) – Specialisation in Gen AI",
+    institution: "SRM Institute of Science and Technology (SRM IST)",
+    current: "Currently pursuing MCA (Gen AI) at SRM IST",
+    previous: "Bachelor of Computer Applications (BCA) – Hindustan Institute of Technology and Science",
   },
 
   samir: {
     name: "Samir Alam",
     role: "Full Stack Developer",
     summary:
-      "Samir Alam is a Full Stack Developer with a strong foundation in both Java backend development and modern React frontends. He has built 6 real-world projects spanning attendance systems, AI-powered tools, real-time applications, and data engineering. He is currently pursuing his MCA and is passionate about building clean, maintainable software.",
+      "Samir Alam is a Full Stack Developer with a strong foundation in both Java backend development and modern React frontends. He has built 6 real-world projects spanning attendance systems, AI-powered tools, real-time applications, and data engineering. He is currently pursuing his MCA with a specialisation in Generative AI at SRM Institute of Science and Technology (SRM IST) and is passionate about building clean, maintainable software.",
   },
 };
 
@@ -424,6 +425,71 @@ function answerAboutProject(norm, project) {
 }
 
 function getLocalFallbackResponse(norm, ctx) {
+  // ── Conversational intents (must be checked before keyword matching) ─────
+  if (
+    norm === "hi" ||
+    norm === "hey" ||
+    norm === "hello" ||
+    norm === "hii" ||
+    norm === "hiii" ||
+    norm.startsWith("hi ") ||
+    norm.startsWith("hey ") ||
+    norm.startsWith("hello ")
+  ) {
+    return { response: pick(RESPONSES.greeting), contextUpdate: {} };
+  }
+  if (
+    norm.includes("thank") ||
+    norm === "ty" ||
+    norm === "thx" ||
+    norm === "thanks"
+  ) {
+    return { response: pick(RESPONSES.thanks), contextUpdate: {} };
+  }
+  if (
+    norm === "bye" ||
+    norm === "goodbye" ||
+    norm === "see you" ||
+    norm === "cya" ||
+    norm.includes("good bye")
+  ) {
+    return { response: pick(RESPONSES.farewell), contextUpdate: {} };
+  }
+  if (norm.includes("how are you") || norm === "how r u" || norm === "how r you") {
+    return { response: pick(RESPONSES.howAreYou), contextUpdate: {} };
+  }
+  if (
+    norm.includes("what can you do") ||
+    norm.includes("what do you do") ||
+    norm.includes("what can u do") ||
+    norm.includes("help")
+  ) {
+    return { response: pick(RESPONSES.whatCanYouDo), contextUpdate: {} };
+  }
+  if (
+    norm.includes("who are you") ||
+    norm.includes("who r you") ||
+    norm.includes("who is this") ||
+    norm.includes("who made you")
+  ) {
+    return { response: pick(RESPONSES.whoAreYou), contextUpdate: {} };
+  }
+  if (
+    norm === "ok" ||
+    norm === "okay" ||
+    norm === "cool" ||
+    norm === "nice" ||
+    norm === "great" ||
+    norm === "awesome" ||
+    norm === "wow" ||
+    norm === "sounds good" ||
+    norm === "got it" ||
+    norm === "interesting"
+  ) {
+    return { response: pick(RESPONSES.positive), contextUpdate: {} };
+  }
+  // ── End conversational intents ────────────────────────────────────────────
+
   const mentioned = findProject(norm);
   if (mentioned) {
     const { answer, topic } = answerAboutProject(norm, mentioned);

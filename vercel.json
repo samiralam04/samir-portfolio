@@ -5,7 +5,7 @@
       "headers": [
         {
           "key": "Access-Control-Allow-Origin",
-          "value": "https://samiralam04.github.io"
+          "value": "*"
         },
         {
           "key": "Access-Control-Allow-Methods",

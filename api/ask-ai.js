@@ -88,8 +88,11 @@ function setSecurityAndCorsHeaders(res, origin) {
     /^http:\/\/(localhost|127\.0\.0\.1|192\.168\.\d+\.\d+|10\.\d+\.\d+\.\d+)(:\d+)?$/.test(
       origin,
     );
+  const isVercel =
+    typeof origin === "string" &&
+    (origin.endsWith(".vercel.app") || origin.includes("vercel.app"));
   const allowed =
-    ALLOWED_ORIGINS.includes(origin) || isLocalNetwork
+    ALLOWED_ORIGINS.includes(origin) || isLocalNetwork || isVercel
       ? origin
       : ALLOWED_ORIGINS[0];
 
