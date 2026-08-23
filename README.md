@@ -4,7 +4,8 @@
 
 > A futuristic, immersive developer portfolio built with a **Cyber-Minimalist Dark Theme**, real-time coding stats, animated project showcases, a scroll-driven interactive experience, and **"Meet My AI"** — an integrated conversational AI assistant powered by **Groq** and **Vercel Serverless Functions**.
 
-🔗 **Live Demo:** [https://samiralam04.github.io/samir-portfolio/](https://samiralam04.github.io/samir-portfolio/)
+🔗 **Live Demo (Full-Stack + AI):** [https://samir-portfolio-ai.vercel.app/](https://samir-portfolio-ai.vercel.app/)
+🔗 **Live Demo (Frontend):** [https://samiralam04.github.io/samir-portfolio/](https://samiralam04.github.io/samir-portfolio/)
 
 ---
 
