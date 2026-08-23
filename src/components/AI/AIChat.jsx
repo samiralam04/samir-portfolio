@@ -19,6 +19,31 @@ const AIChat = () => {
     useAI();
 
   const messagesEndRef = useRef(null);
+  const panelRef = useRef(null);
+
+  // ── Fix: keep panel anchored when mobile keyboard opens ─────────────────────
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const setViewport = () => {
+      const vv = window.visualViewport;
+      const h = vv ? vv.height : window.innerHeight;
+      const offsetTop = vv ? vv.offsetTop : 0;
+      if (panelRef.current) {
+        panelRef.current.style.height = `${h}px`;
+        panelRef.current.style.maxHeight = `${h}px`;
+        panelRef.current.style.top = `${offsetTop}px`;
+      }
+    };
+
+    setViewport();
+    window.visualViewport?.addEventListener("resize", setViewport);
+    window.visualViewport?.addEventListener("scroll", setViewport);
+    return () => {
+      window.visualViewport?.removeEventListener("resize", setViewport);
+      window.visualViewport?.removeEventListener("scroll", setViewport);
+    };
+  }, [isOpen]);
 
   // Auto-scroll to bottom on new message or when typing indicator appears
   useEffect(() => {
@@ -46,6 +71,7 @@ const AIChat = () => {
           aria-label="Samir's AI Assistant"
         >
           <Panel
+            ref={panelRef}
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
@@ -134,7 +160,7 @@ const AIChat = () => {
                     <AIMessage key={msg.id} message={msg} />
                   ))}
                   {isTyping && <TypingIndicator />}
-                  <div ref={messagesEndRef} />
+                  <div ref={messagesEndRef} data-messages-end="true" />
                 </MessageList>
               )}
             </MessagesArea>
@@ -201,30 +227,26 @@ const Backdrop = styled(motion.div)`
 `;
 
 const Panel = styled(motion.aside)`
-  position: relative;
+  position: fixed;
+  top: 0;
+  right: 0;
   width: 420px;
   max-width: 100vw;
-  height: 100vh;
   height: 100dvh;
-  max-height: 100vh;
-  max-height: 100dvh;
   background: rgba(10, 10, 15, 0.96);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border-left: 1px solid rgba(0, 255, 157, 0.15);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   overflow: hidden;
   box-shadow:
     -8px 0 40px rgba(0, 0, 0, 0.6),
     -1px 0 0 rgba(0, 255, 157, 0.08);
+  /* JS sets explicit px height on mobile when keyboard opens */
 
   @media (max-width: 768px) {
     width: 100vw;
-    height: 100vh;
-    height: 100dvh;
-    max-height: 100dvh;
     border-left: none;
     border-top: 1px solid rgba(0, 255, 157, 0.15);
   }
@@ -396,16 +418,17 @@ const ContextProject = styled.span`
 const MessagesArea = styled.div`
   flex: 1 1 0%;
   min-height: 0;
-  max-height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
-  padding: 1rem 1.1rem;
+  padding: 1rem 1.1rem 0.5rem;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
   scroll-behavior: smooth;
+  /* Ensure messages area never overflows panel */
+  max-height: 100%;
 
   /* Custom scrollbar */
   &::-webkit-scrollbar {
@@ -415,8 +438,11 @@ const MessagesArea = styled.div`
     background: transparent;
   }
   &::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.15);
     border-radius: 2px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 255, 157, 0.3);
   }
 `;
 

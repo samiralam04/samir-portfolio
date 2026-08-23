@@ -14,9 +14,10 @@ const AIInput = () => {
   const [value, setValue] = useState("");
   const inputRef = useRef(null);
 
-  // Auto-focus input when panel opens or when typing completes
+  // Auto-focus only on desktop — on mobile the keyboard opening causes layout shifts
   useEffect(() => {
-    if (isOpen && !isTyping) {
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    if (isOpen && !isTyping && !isMobile) {
       const timer = setTimeout(() => {
         inputRef.current?.focus();
       }, 150);
@@ -28,7 +29,10 @@ const AIInput = () => {
     if (!value.trim() || isTyping) return;
     sendMessage(value);
     setValue("");
-    inputRef.current?.focus();
+    // Re-focus immediately so mobile keyboard stays open
+    requestAnimationFrame(() => {
+      inputRef.current?.focus();
+    });
   };
 
   const handleKeyDown = (e) => {
@@ -38,19 +42,28 @@ const AIInput = () => {
     }
   };
 
+  // When input is focused on mobile, scroll the latest message into view
+  const handleFocus = () => {
+    setTimeout(() => {
+      const msgEnd = document.querySelector("[data-messages-end]");
+      msgEnd?.scrollIntoView({ behavior: "smooth" });
+    }, 350); // wait for keyboard to fully open
+  };
+
   return (
     <InputWrapper>
       <StyledInput
         ref={inputRef}
         type="text"
         value={value}
-        onChange={(e) => setValue(e.target.value)}
+        onChange={(e) => !isTyping && setValue(e.target.value)}
         onKeyDown={handleKeyDown}
+        onFocus={handleFocus}
         placeholder={isTyping ? "AI is thinking…" : "Ask anything about Samir…"}
-        readOnly={isTyping}
         aria-label="Ask a question about Samir"
         maxLength={500}
         autoComplete="off"
+        enterKeyHint="send"
       />
       <SendButton
         onClick={handleSend}
